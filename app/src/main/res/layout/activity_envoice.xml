@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.shoaibnwar.iwsm.Activities.Envoice"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/rl_top_title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorPink">
+
+            <ImageView
+                android:id="@+id/iv_back_arrow"
+                android:layout_width="25dp"
+                android:layout_height="15dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:scaleType="fitXY"
+                android:tint="@color/white"
+                android:src="@drawable/arrow_back"/>
+            <TextView
+                android:layout_toRightOf="@id/iv_back_arrow"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:text="Order Confirmation" />
+
+            <TextView
+                android:id="@+id/tv_confirm"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:text="Confirm" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_top_title_bar">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rc_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_price"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/black">
+            <TextView
+                android:id="@+id/tv_item_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Total Items 2"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginLeft="50dp"/>
+
+            <TextView
+                android:id="@+id/tv_total_price"
+                android:layout_below="@+id/tv_item_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Price Rs.450"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginLeft="50dp"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

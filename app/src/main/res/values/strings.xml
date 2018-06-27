@@ -1,0 +1,97 @@
+<resources>
+    <string name="app_name">iWSM</string>
+
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyD5iNsF7LPnytD6fh4wVe7e3ow0udj27Ms</string>
+
+    <string-array name="items">
+        <item>pepsi,20</item>
+        <item>coke,20</item>
+        <item>marida,20</item>
+        <item>fenta,20</item>
+        <item>sting,25</item>
+        <item>7up,20</item>
+        <item>bonus,10</item>
+        <item>surf xcel,20</item>
+        <item>lux,30</item>
+        <item>tibat,25</item>
+        <item>dalda,440</item>
+        <item>shan,640</item>
+        <item>nisan,345</item>
+        <item>blue band,720</item>
+        <item>knorr,620</item>
+        <item>closeup,230</item>
+        <item>dove,240</item>
+        <item>lifebouy,820</item>
+        <item>lipton,720</item>
+        <item>magnum,620</item>
+        <item>pepsodent,520</item>
+        <item>ponds,520</item>
+        <item>sunsilk,420</item>
+        <item>domex,220</item>
+        <item>fari &amp; lovely,520</item>
+        <item>fruttare,240</item>
+        <item>rin,2210</item>
+        <item>kitchen,520</item>
+        <item>home door,220</item>
+        <item>bedding,520</item>
+        <item>furniture,420</item>
+        <item>storage,220</item>
+        <item>smartphone,220</item>
+        <item>bluetooth,720</item>
+        <item>accessories,230</item>
+        <item>tablets,820</item>
+        <item>earphones,620</item>
+        <item>selfie sticks,820</item>
+        <item>t-shirt,260</item>
+        <item>watches,520</item>
+        <item>shoes,820</item>
+        <item>pents,240</item>
+        <item>trousers,920</item>
+        <item>shorts,820</item>
+        <item>traditional war,320</item>
+        <item>innerwear,620</item>
+        <item>unstitched,320</item>
+        <item>kurtas,620</item>
+        <item>twellery,320</item>
+        <item>nightwear,420</item>
+        <item>western,620</item>
+        <item>bras,420</item>
+        <item>bags,420</item>
+        <item>makeup,250</item>
+        <item>hair care,320</item>
+        <item>fragrances,620</item>
+        <item>skin care,720</item>
+        <item>bath &amp; body,240</item>
+        <item>personal care,250</item>
+        <item>health care,205</item>
+        <item>men grooming,240</item>
+        <item>large appliances,260</item>
+        <item>small appliences,280</item>
+        <item>cooling &amp; heating,270</item>
+        <item>waster drayers,270</item>
+        <item>generator,260</item>
+        <item>refrigerator,2650</item>
+        <item>freezer,280</item>
+        <item>mixing machine,240</item>
+        <item>small cooking appliences,250</item>
+        <item>water dispenser,2550</item>
+        <item>ironing,203</item>
+        <item>laundery,205</item>
+        <item>computing,240</item>
+        <item>gaming,250</item>
+        <item>laptops,10000</item>
+        <item>printers,2050</item>
+        <item>hard drives,550</item>
+        <item>rams,20</item>
+        <item>consoles,20</item>
+        <item>video games,10</item>
+        <item>gaming accesories,20</item>
+        <item>tv and videos,40</item>
+        <item>audio,60</item>
+        <item>camera,1000</item>
+        <item>televesion,2000</item>
+        <item>remote,40</item>
+        <item>headphones,50</item>
+
+    </string-array>
+</resources>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/black">
+                <TextView
+                    android:id="@+id/tv_count"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Item Name:"
+                    android:textColor="@color/black"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20dp"/>
+
+                <TextView
+                    android:id="@+id/tv_item_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Item Name:"
+                    android:textColor="@color/black"
+                    android:layout_marginRight="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="20dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Item Quantities:"
+                    android:textColor="@color/black"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20dp"/>
+
+                <TextView
+                    android:id="@+id/tv_item_quantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Item quatities:"
+                    android:textColor="@color/black"
+                    android:layout_marginRight="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="20dp"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Items Price:"
+                    android:textColor="@color/black"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20dp"/>
+
+                <TextView
+                    android:id="@+id/tv_item_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Item Prices:"
+                    android:textColor="@color/black"
+                    android:layout_marginRight="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="20dp"/>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>
