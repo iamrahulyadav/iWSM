@@ -10,26 +10,21 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.common.images.ImageManager;
 import com.shoaibnwar.iwsm.Adapters.CustomeItem;
 import com.shoaibnwar.iwsm.R;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class OrderTaking extends AppCompatActivity {
 
@@ -47,6 +42,9 @@ public class OrderTaking extends AppCompatActivity {
     int mPrice = 0;
     ArrayList<HashMap<String, String>> itemList;
     ArrayList<HashMap<String, String>> itemListConfirm;
+
+    Animation animShake;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +81,8 @@ public class OrderTaking extends AppCompatActivity {
         itemList = new ArrayList<>();
         itemListConfirm = new ArrayList<>();
         top_et_item_name = (AutoCompleteTextView) findViewById(R.id.et_item_name) ;
+        animShake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake);
+
 
     }
 
@@ -99,6 +99,8 @@ public class OrderTaking extends AppCompatActivity {
 
                 LinearLayout ll_inflate_document_for_experienceInner = (LinearLayout) rowView.findViewById(R.id.ll_to_inflat);
                 ll_main_item_views.addView(rowView, ll_main_item_views.getChildCount());
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.let_to_right);
+                rowView.setAnimation(animation);
                 ImageView ivCrose = (ImageView) rowView.findViewById(R.id.iv_cross_item_view);
                 ivCrose.bringToFront();
 
@@ -137,6 +139,9 @@ public class OrderTaking extends AppCompatActivity {
             public void onClick(View v) {
                 ViewGroup parent = (ViewGroup) myView.getParent();
                 parent.removeView(myView);
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.right_to_left);
+                myView.setAnimation(animation);
+
             }
         });
      /*   Log.e("TAG", "Image button Clicked: " + ll_main_item_views.getChildCount());
@@ -197,6 +202,7 @@ public class OrderTaking extends AppCompatActivity {
 
                         if (itemName.length()==0){
                             et_item_name.setError("Should not be empty");
+                            et_item_name.setAnimation(animShake);
                             isAnyFieldEmpty = true;
                         }else {
 
@@ -283,7 +289,9 @@ public class OrderTaking extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                addMoreQuanity(et_quantitiy, top_tv_price_text, tv_price);
+                if (et_quantitiy.length()>0) {
+                    addMoreQuanity(et_quantitiy, top_tv_price_text, tv_price);
+                }
 
             }
         });
@@ -293,7 +301,10 @@ public class OrderTaking extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                leesQuanity(et_quantitiy, top_tv_price_text, tv_price);
+                if (et_quantitiy.length()>0) {
+                    leesQuanity(et_quantitiy, top_tv_price_text, tv_price);
+
+                }
             }
         });
 
@@ -306,11 +317,14 @@ public class OrderTaking extends AppCompatActivity {
         intValue = intValue+1;
         String toSet = String.valueOf(intValue);
         view.setText(toSet);
-        int pri = Integer.valueOf(tvPrice.getText().toString());
-        int price = pri+mPrice;
-        String curentPrice = String.valueOf(price);
-        tv_price_text.setText("Price Rs.");
-        tvPrice.setText(curentPrice);
+        if (tvPrice.length()>0) {
+            int pri = Integer.valueOf(tvPrice.getText().toString());
+            int price = pri + mPrice;
+
+            String curentPrice = String.valueOf(price);
+            tv_price_text.setText("Price Rs.");
+            tvPrice.setText(curentPrice);
+        }
 
     }
     private void leesQuanity(TextView view, TextView tv_price_text, TextView tvPrice){
@@ -323,14 +337,14 @@ public class OrderTaking extends AppCompatActivity {
             intValue = intValue - 1;
             String toSet = String.valueOf(intValue);
             view.setText(toSet);
-
+            if (tvPrice.length()>0) {
             int pri = Integer.valueOf(tvPrice.getText().toString());
             int price = pri-mPrice;
             String curentPrice = String.valueOf(price);
             tv_price_text.setText("Price Rs.");
             tvPrice.setText(curentPrice);
 
-        }
+        }}
     }
 
     private void onTaxkChangeListener(final ArrayList<HashMap<String, String>> dList, final AutoCompleteTextView editText, final TextView et_quatitiy, final TextView tv_price_text, final TextView tv_price, final RelativeLayout rl_price){

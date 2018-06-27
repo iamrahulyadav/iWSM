@@ -116,6 +116,8 @@ public class StartTripMaps extends FragmentActivity implements OnMapReadyCallbac
     static PolylineOptions finalOptions;
 
     private Button bt_arrived;
+    private TextView  tv_reaching_time;
+
 
 
     @Override
@@ -162,6 +164,7 @@ public class StartTripMaps extends FragmentActivity implements OnMapReadyCallbac
         mProvider.setRadius(HeatmapTileProvider.DEFAULT_RADIUS);
 
         bt_arrived = (Button) findViewById(R.id.bt_arrived);
+        tv_reaching_time = (TextView)findViewById(R.id.tv_reaching_time);
 
 
     }//end of init
@@ -352,6 +355,20 @@ public class StartTripMaps extends FragmentActivity implements OnMapReadyCallbac
                 + "&destination=" + 31.571359 + "," + 74.310355 + "&sensor=false";
 
         DownloadTask downloadTask = new DownloadTask();
+        LatLng sourLatLng = new LatLng(latitude, longitude);
+
+        double distance = shortDistance(74.310355, 31.571359, longitude, latitude);
+        distance = distance/1000;
+        int intDistance = (int)distance;
+        double time = distance*2.5;
+        int TIME = (int)time;
+        String timeIs = (timeConvert((int)time));
+        Log.e("TAg", "the distance is: " + intDistance);
+        Log.e("TAg", "the distance is: " + timeIs);
+
+        tv_reaching_time.setText("You are "+TIME + " min away from the destination");
+
+
         // Start downloading json data from Google Directions API
         downloadTask.execute(url);
 
@@ -366,7 +383,6 @@ public class StartTripMaps extends FragmentActivity implements OnMapReadyCallbac
         if(serviceCode == 1)
         {
             isServiceInProgressFlag = false;
-
 
         }
 
@@ -609,4 +625,20 @@ public class StartTripMaps extends FragmentActivity implements OnMapReadyCallbac
         });
     }
 
+    public double shortDistance(double fromLong, double fromLat, double toLong, double toLat){
+        double d2r = Math.PI / 180;
+        double dLong = (toLong - fromLong) * d2r;
+        double dLat = (toLat - fromLat) * d2r;
+        double a = Math.pow(Math.sin(dLat / 2.0), 2) + Math.cos(fromLat * d2r)
+                * Math.cos(toLat * d2r) * Math.pow(Math.sin(dLong / 2.0), 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double d = 6367000 * c;
+        return Math.round(d);
+    }
+
+
+    //converting time into hrs and day
+    public String timeConvert(int time) {
+        return time/24/60 + ":" + time/60%24 + ':' + time%60;
+    }
 }

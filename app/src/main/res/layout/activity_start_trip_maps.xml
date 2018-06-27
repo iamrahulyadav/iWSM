@@ -25,9 +25,9 @@
         android:background="@color/color_text_hint">
         
         <TextView
+            android:id="@+id/tv_reaching_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="You are 25 min away from the deistination"
             android:textColor="@color/white"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20sp"/>
