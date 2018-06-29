@@ -8,7 +8,6 @@
         android:id="@+id/rl_single_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="20dp"
         android:layout_marginRight="10dp"
@@ -20,6 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="20dp"
+            android:textColor="@color/black"
             android:text="Assignmetn Name"/>
         <TextView
             android:id="@+id/tv_date"
@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
+            android:textColor="@color/black"
             android:text="6/25/2018"/>
         <ImageView
             android:id="@+id/iv_image"
@@ -35,7 +36,6 @@
             android:layout_marginTop="25dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-
             android:scaleType="fitXY"/>
 
         <TextView

@@ -15,6 +15,7 @@ import com.shoaibnwar.iwsm.Adapters.EnvoiceAdapter;
 import com.shoaibnwar.iwsm.R;
 
 import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.HashMap;
 
 public class Envoice extends AppCompatActivity {
@@ -67,8 +68,8 @@ public class Envoice extends AppCompatActivity {
             }
         }
 
-        tv_total_price.setText("Total Items Rs." +String.valueOf(mPrice));
-        tv_item_count.setText("Total Prices " +String.valueOf(dataList.size()));
+        tv_total_price.setText("Total Prices Rs." +String.valueOf(mPrice));
+        tv_item_count.setText("Total Items " +String.valueOf(dataList.size()));
     }
 
     @Override
@@ -92,6 +93,9 @@ public class Envoice extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Intent i = new Intent(Envoice.this, MainMaps.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
             }
         });
     }

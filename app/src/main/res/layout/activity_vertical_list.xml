@@ -4,13 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.shoaibnwar.iwsm.Activities.VerticalListActivity">
+    tools:context="com.shoaibnwar.iwsm.Activities.VerticalListActivity"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_back_arrow"
+        android:layout_width="25dp"
+        android:layout_height="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:scaleType="fitXY"
+        android:tint="@color/black"
+        android:src="@drawable/arrow_back"/>
+
+        <devs.mulham.horizontalcalendar.HorizontalCalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FAFAFA"
+            app:selectedDateBackground="#00ffffff"
+            app:selectorColor="#c62828"
+            app:textColorNormal="#bababa"
+            app:textColorSelected="@color/colorPink"
+            app:textSizeDayName="20sp"
+            app:textSizeDayNumber="20sp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rc_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_below="@+id/calendarView"
         android:scrollbars="none" />
-
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

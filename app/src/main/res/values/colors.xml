@@ -3,6 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="color_blue">#2863a4</color>
 
     <color name="black">#000000</color>
     <color name="white" >#FFF</color>
@@ -12,20 +13,26 @@
     <color name="red">#FFFF0000</color>
     <color name="light_red">#FF4E4E</color>
     <color name="green">#00ff00</color>
+    <color name="green2">#128312</color>
     <color name="orange">#FF8C00</color>
+    <color name="brown">#a0582d</color>
     <color name="light_grey">#DCDCDC</color>
     <color name="light_grey_tr">#e1dcdcdc</color>
     <color name="light_grey_t">#edc1c0c0</color>
     <color name="dark_grey">#696969</color>
     <color name="blue">#0000ff</color>
     <color name="light_blue">#4271f4</color>
+    <color name="light_blue1">#28b7f1</color>
+
     <color name="blue_dim">#01727D</color>
     <color name="colorPink">#de6177</color>
+    <color name="redish">#840c2c</color>
+
     <color name="color_off_white">#faf9f9</color>
     <color name="color_text_hint">#949090</color>
     <color name="color_line_color">#c4c1c1</color>
     <color name="color_line_color_1">#75c4c1c1</color>
-
+    <color name="oragne_red">#f63b01</color>
 
     <color name="colorWhite">#fff</color>
 
@@ -45,6 +52,10 @@
     <color name="selected_day_background">#E75F49</color>
     <color name="selected_day_text">#fff2f2f2</color>
 
+    <color name="fab_color_pressed">#007787</color>
+    <color name="fab_color_shadow">#44000000</color>
+    <color name="text_like_counter">#2b5a83</color>
+    <color name="paint_color">#dddddd</color>
 
 
 </resources>

@@ -76,7 +76,8 @@ public class CustomeAdapterVerticallScrollItems extends RecyclerView.Adapter<Cus
 
         Log.e("TAg", "the view type : " + viewType);
 
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.custome_layout_vertical_items, parent, false);
+        //View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.custome_layout_vertical_items, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.temp_vertical_layout, parent, false);
         viewHolder = new MyViewHolder(itemView);
 
         return viewHolder;

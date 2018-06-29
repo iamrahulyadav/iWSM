@@ -51,6 +51,12 @@
                         android:textColorHint="@color/light_grey_t"
                         android:background="@null"/>
 
+                    <TextView
+                        android:id="@+id/tv_each_item_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"/>
+
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -68,7 +74,7 @@
                     <TextView
                         android:id="@+id/et_quantitiy"
                         android:layout_toRightOf="@id/tv_quantitiy"
-                        android:layout_width="wrap_content"
+                        android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:paddingLeft="8dp"
                         android:textColor="@color/white"

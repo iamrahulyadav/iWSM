@@ -117,6 +117,7 @@ public class StartTripMaps extends FragmentActivity implements OnMapReadyCallbac
 
     private Button bt_arrived;
     private TextView  tv_reaching_time;
+    private ImageView iv_back_arrow;
 
 
 
@@ -166,6 +167,7 @@ public class StartTripMaps extends FragmentActivity implements OnMapReadyCallbac
         bt_arrived = (Button) findViewById(R.id.bt_arrived);
         tv_reaching_time = (TextView)findViewById(R.id.tv_reaching_time);
 
+        iv_back_arrow = (ImageView) findViewById(R.id.iv_back_arrow);
 
     }//end of init
 

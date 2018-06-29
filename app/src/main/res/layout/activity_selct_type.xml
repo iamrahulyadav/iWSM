@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.shoaibnwar.iwsm.Activities.SelectType"
+    android:background="@color/colorPink">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/subway_symbol_rgb_final"
+            android:layout_centerInParent="true"/>
+        <TextView
+            android:layout_below="@+id/iv_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="iWFM-Sale Automation"
+            android:textColor="@color/black"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <RelativeLayout
+                android:id="@+id/rl_view_customers"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/circular_shaded_layout">
+                <ImageView
+                    android:id="@+id/iv_view_customers"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerVertical="true"
+                    android:tint="@color/white"
+                    android:src="@drawable/person_icon"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/iv_view_customers"
+                    android:layout_centerVertical="true"
+                    android:textAlignment="center"
+                    android:text="View Customers"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_view_assignments"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/view_assignments">
+                <ImageView
+                    android:id="@+id/iv_view_assignments"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/assignment_icon"
+                    android:tint="@color/white"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/iv_view_assignments"
+                    android:layout_centerVertical="true"
+                    android:textAlignment="center"
+                    android:text="View Assignments"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp">
+
+            <RelativeLayout
+                android:id="@+id/rl_view_routes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/route_background">
+                <ImageView
+                    android:id="@+id/iv_view_routes"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:paddingLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/routes_icon"
+                    android:tint="@color/white"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/iv_view_routes"
+                    android:layout_centerVertical="true"
+                    android:textAlignment="center"
+                    android:text="View Routes"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_assignment_history"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/assignment_history">
+                <ImageView
+                    android:id="@+id/iv_view_assignment_history"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:padding="4dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/history_icon"
+                    android:tint="@color/white"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/iv_view_assignment_history"
+                    android:layout_centerVertical="true"
+                    android:textAlignment="center"
+                    android:text="Assignments History"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -845,7 +845,7 @@ public class MainMaps extends FragmentActivity implements OnMapReadyCallback, As
             LatLng latLng = new LatLng(latitude,longitude);
 
             mMap.addMarker(new MarkerOptions().position(latLng).
-                    icon(BitmapDescriptorFactory.fromResource(R.drawable.markersmall))
+                    icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_face))
                     .title("Title " + String.valueOf(i))).setTag(String.valueOf(i));
 
 
@@ -873,6 +873,13 @@ public class MainMaps extends FragmentActivity implements OnMapReadyCallback, As
                 }
             }
         });
+    }
+
+    public boolean isNumberIs5(int nunber){
+
+        if (nunber==5)
+            return true;
+        return false;
     }
 
 }

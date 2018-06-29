@@ -1,5 +1,6 @@
 package com.shoaibnwar.iwsm.Activities;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,10 +11,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,6 +26,8 @@ import android.widget.TextView;
 
 import com.shoaibnwar.iwsm.Adapters.CustomeItem;
 import com.shoaibnwar.iwsm.R;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,6 +44,7 @@ public class OrderTaking extends AppCompatActivity {
     TextView top_tv_price_text;
     TextView top_tv_price;
     RelativeLayout top_rl_price;
+    TextView top_tv_each_item_price;
 
     int mPrice = 0;
     ArrayList<HashMap<String, String>> itemList;
@@ -56,9 +63,10 @@ public class OrderTaking extends AppCompatActivity {
         confirmTextClickHandler();
         hardCodedData();
 
-        addMoreItemClickHandler(top_iv_item_quantity_more, top_et_quantitiy, top_tv_price_text, top_tv_price);
-        lestItemQuantityClickHandler(top_iv_item_quantity_less, top_et_quantitiy, top_tv_price_text, top_tv_price);
-        onTaxkChangeListener(itemList, top_et_item_name, top_et_quantitiy, top_tv_price_text, top_tv_price, top_rl_price);
+        addMoreItemClickHandler(top_iv_item_quantity_more, top_et_quantitiy, top_tv_price_text, top_tv_price, top_tv_each_item_price);
+        lestItemQuantityClickHandler(top_iv_item_quantity_less, top_et_quantitiy, top_tv_price_text, top_tv_price, top_tv_each_item_price);
+        onTaxkChangeListener(itemList, top_et_item_name, top_et_quantitiy, top_tv_price_text, top_tv_price, top_rl_price, top_tv_each_item_price);
+
 
 
 
@@ -82,6 +90,7 @@ public class OrderTaking extends AppCompatActivity {
         itemListConfirm = new ArrayList<>();
         top_et_item_name = (AutoCompleteTextView) findViewById(R.id.et_item_name) ;
         animShake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake);
+        top_tv_each_item_price = (TextView) findViewById(R.id.tv_each_item_price);
 
 
     }
@@ -113,12 +122,14 @@ public class OrderTaking extends AppCompatActivity {
                 TextView tv_price = (TextView) rowView.findViewById(R.id.tv_price);
                 EditText et_item_detail = (EditText) rowView.findViewById(R.id.et_item_detail);
                 RelativeLayout rl_price = (RelativeLayout) rowView.findViewById(R.id.rl_price);
+                TextView tv_each_item_price = (TextView) rowView.findViewById(R.id.tv_each_item_price);
 
 
-                addDapter(itemList, et_item_name, et_quantitiy, tv_price_text, tv_price, rl_price);
-                addMoreItemClickHandler(iv_item_quantity_more, et_quantitiy, tv_price_text, tv_price);
-                lestItemQuantityClickHandler(iv_item_quantity_less, et_quantitiy, tv_price_text, tv_price);
-                onTaxkChangeListener(itemList, et_item_name, et_quantitiy, tv_price_text, tv_price, rl_price);
+                addDapter(itemList, et_item_name, et_quantitiy, tv_price_text, tv_price, rl_price, tv_each_item_price);
+                addMoreItemClickHandler(iv_item_quantity_more, et_quantitiy, tv_price_text, tv_price, tv_each_item_price);
+                lestItemQuantityClickHandler(iv_item_quantity_less, et_quantitiy, tv_price_text, tv_price, tv_each_item_price);
+                onTaxkChangeListener(itemList, et_item_name, et_quantitiy, tv_price_text, tv_price, rl_price, tv_each_item_price);
+                EnterQuantityNumber(et_quantitiy, tv_price, tv_price_text, rl_price, tv_each_item_price);
 
                 deleteingView(rowView, ivCrose);
 
@@ -249,10 +260,11 @@ public class OrderTaking extends AppCompatActivity {
         }
 
 
-        addDapter(itemList, top_et_item_name, top_et_quantitiy, top_tv_price_text, top_tv_price, top_rl_price);
+        addDapter(itemList, top_et_item_name, top_et_quantitiy, top_tv_price_text, top_tv_price, top_rl_price, top_tv_each_item_price);
+        EnterQuantityNumber(top_et_quantitiy, top_tv_price, top_tv_price_text, top_rl_price, top_tv_each_item_price);
     }
 
-    private void addDapter(ArrayList<HashMap<String, String>> datList, final AutoCompleteTextView et_item_name, final TextView et_quantitiy, final TextView tv_price_text, final TextView tv_price, final RelativeLayout rl_price) {
+    private void addDapter(ArrayList<HashMap<String, String>> datList, final AutoCompleteTextView et_item_name, final TextView et_quantitiy, final TextView tv_price_text, final TextView tv_price, final RelativeLayout rl_price, final TextView tv_each_item_price) {
 
         CustomeItem customeItem = new CustomeItem(OrderTaking.this, datList);
 
@@ -261,6 +273,11 @@ public class OrderTaking extends AppCompatActivity {
         et_item_name.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                InputMethodManager imm = (InputMethodManager)getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(et_item_name.getWindowToken(), 0);
 
                 TextView title = (TextView) view.findViewById(R.id.tv_title);
                 TextView price = (TextView) view.findViewById(R.id.tv_price);
@@ -275,34 +292,33 @@ public class OrderTaking extends AppCompatActivity {
                 tv_price_text.setText("Price Rs ");
                 tv_price.setText(PRICE);
                 mPrice = Integer.valueOf(PRICE);
-
-
-
-
+                tv_each_item_price.setText(PRICE);
                 //Toast.makeText(SignIn.this, "Pos "+text, Toast.LENGTH_SHORT).show();
+
+
             }
         });
     }
 
-    private void addMoreItemClickHandler(ImageView ivMore, final TextView et_quantitiy, final TextView top_tv_price_text, final TextView tv_price){
+    private void addMoreItemClickHandler(ImageView ivMore, final TextView et_quantitiy, final TextView top_tv_price_text, final TextView tv_price, final TextView tv_each_item_price){
         ivMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (et_quantitiy.length()>0) {
-                    addMoreQuanity(et_quantitiy, top_tv_price_text, tv_price);
+                    addMoreQuanity(et_quantitiy, top_tv_price_text, tv_price, tv_each_item_price);
                 }
 
             }
         });
     }
-    private void lestItemQuantityClickHandler(ImageView ivLess, final TextView et_quantitiy, final TextView top_tv_price_text, final TextView tv_price){
+    private void lestItemQuantityClickHandler(ImageView ivLess, final TextView et_quantitiy, final TextView top_tv_price_text, final TextView tv_price, final TextView tv_each_item_price){
         ivLess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (et_quantitiy.length()>0) {
-                    leesQuanity(et_quantitiy, top_tv_price_text, tv_price);
+                    leesQuanity(et_quantitiy, top_tv_price_text, tv_price, tv_each_item_price);
 
                 }
             }
@@ -310,7 +326,7 @@ public class OrderTaking extends AppCompatActivity {
 
     }
 
-    private void addMoreQuanity(TextView view, TextView tv_price_text, TextView tvPrice){
+    private void addMoreQuanity(TextView view, TextView tv_price_text, TextView tvPrice, TextView tv_each_item_price){
 
         String text = view.getText().toString();
         int intValue = Integer.valueOf(text);
@@ -327,7 +343,7 @@ public class OrderTaking extends AppCompatActivity {
         }
 
     }
-    private void leesQuanity(TextView view, TextView tv_price_text, TextView tvPrice){
+    private void leesQuanity(TextView view, TextView tv_price_text, TextView tvPrice, TextView tv_each_item_price){
 
         String text = view.getText().toString();
         int intValue = Integer.valueOf(text);
@@ -344,10 +360,11 @@ public class OrderTaking extends AppCompatActivity {
             tv_price_text.setText("Price Rs.");
             tvPrice.setText(curentPrice);
 
-        }}
+        }
+        }
     }
 
-    private void onTaxkChangeListener(final ArrayList<HashMap<String, String>> dList, final AutoCompleteTextView editText, final TextView et_quatitiy, final TextView tv_price_text, final TextView tv_price, final RelativeLayout rl_price){
+    private void onTaxkChangeListener(final ArrayList<HashMap<String, String>> dList, final AutoCompleteTextView editText, final TextView et_quatitiy, final TextView tv_price_text, final TextView tv_price, final RelativeLayout rl_price, final TextView tv_each_item_price){
 
 
         editText.addTextChangedListener(new TextWatcher() {
@@ -359,7 +376,7 @@ public class OrderTaking extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                addDapter(dList, editText, et_quatitiy, tv_price_text,  tv_price, rl_price);
+                addDapter(dList, editText, et_quatitiy, tv_price_text,  tv_price, rl_price, tv_each_item_price);
             }
 
             @Override
@@ -375,6 +392,55 @@ public class OrderTaking extends AppCompatActivity {
             }
         });
 
+    }
+
+private void EnterQuantityNumber(final TextView tvQuantityNumbers, final TextView PRICE, final TextView priceTEXT, final RelativeLayout rl_price, final TextView tv_each_item_price){
+
+        tvQuantityNumbers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String qunatitiyNo = tvQuantityNumbers.getText().toString();
+                final Dialog quantityDialog = new Dialog(OrderTaking.this);
+                quantityDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                quantityDialog.setContentView(R.layout.dialog_add_quantities);
+                final EditText dialog_quantity_no = (EditText) quantityDialog.findViewById(R.id.dialog_quantity_no);
+                final Button dialog_bt_ok = (Button) quantityDialog.findViewById(R.id.dialog_bt_ok);
+                dialog_quantity_no.setText(qunatitiyNo);
+                dialog_quantity_no.setSelection(dialog_quantity_no.getText().length());
+
+                dialog_bt_ok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        tvQuantityNumbers.setText(String.valueOf(dialog_quantity_no.getText().toString()));
+
+                        String prii = tv_each_item_price.getText().toString();
+                        if (prii.length()>0) {
+                            int pri = Integer.valueOf(prii);
+                            Log.e("TAg", "the value for item is: " + pri);
+                            int curQuantities = Integer.valueOf(dialog_quantity_no.getText().toString());
+                            Log.e("TAg", "the value for item is: " + curQuantities);
+                            int price = pri*curQuantities;
+                            Log.e("TAg", "the value for item is: " + price);
+                            String curentPrice = String.valueOf(price);
+                            priceTEXT.setText("Price Rs.");
+                            PRICE.setText(curentPrice);
+                            rl_price.setVisibility(View.VISIBLE);
+
+                        }
+                        InputMethodManager imm = (InputMethodManager)getSystemService(
+                                Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(dialog_quantity_no.getWindowToken(), 0);
+                        quantityDialog.dismiss();
+
+                    }
+                });
+
+                quantityDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimationTooDouen;
+                quantityDialog.show();
+            }
+        });
     }
 
 }
