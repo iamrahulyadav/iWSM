@@ -88,20 +88,25 @@ public class CustomeAdapterVerticallScrollItems extends RecyclerView.Adapter<Cus
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         if (holder instanceof MyViewHolder) {
 
+            String mettingTime = dataArray.get(position).get("startTime").toString();
+            String meetingDate = dataArray.get(position).get("startdate").toString();
+            String assignerName = dataArray.get(position).get("assignerName").toString();
+
             int pp = position+2;
             String daa = String.valueOf(pp);
             String datee = "07/0"+daa+"/2018";
             int reachingTime = 15+position;
 
-            holder.tv_assignment_name.setText("Assignment " + String.valueOf(position+1));
-            holder.tv_date.setText(datee);
+            holder.tv_assignment_name.setText(assignerName);
+            holder.tv_date.setText(meetingDate);
             holder.tv_time_to_reach.setText("You will be reaching in "+String.valueOf(reachingTime)+" mins...");
+            holder.tv_meeting_time.setText("Meeting Time " + mettingTime);
             //holder.custome_tv.setText(bloodAppealList.get(position).get("V_Title"));
-            Picasso.with(mContext)
+            /*Picasso.with(mContext)
                     .load(dataArray.get(position).get("V_ThumbImg"))
                     .placeholder(R.drawable.amu_bubble_shadow)
                     //.fit()
-                    .into(holder.iv_image);
+                    .into(holder.iv_image);*/
             // Glide.with(mContext).load(bloodAppealList.get(position).get("V_ThumbImg")).into(holder.custome_image);
 
         }
@@ -110,14 +115,20 @@ public class CustomeAdapterVerticallScrollItems extends RecyclerView.Adapter<Cus
             @Override
             public void onClick(View view) {
 
-                String assetId = dataArray.get(position).get("Vid");
-                String assetType = dataArray.get(position).get("VType");
+
 
                 Intent detailActivity = new Intent(mContext, SingleItemDetailActivityForCabs.class);
-                /*detailActivity.putExtra("Vid", assetId);
-                detailActivity.putExtra("VType", assetType);*/
 
-                detailActivity.putExtra("imageUrl", dataArray.get(position).get("V_ThumbImg"));
+                detailActivity.putExtra("imageUrl", "-1");
+                detailActivity.putExtra("contactName", dataArray.get(position).get("assignerName"));
+                detailActivity.putExtra("contactNumber", dataArray.get(position).get("assignerContact"));
+                detailActivity.putExtra("contactAddress", dataArray.get(position).get("assignerAddress"));
+                detailActivity.putExtra("contactCompany", dataArray.get(position).get("assignerCompany"));
+                detailActivity.putExtra("contactLat", dataArray.get(position).get("32.215245"));
+                detailActivity.putExtra("contactLng", dataArray.get(position).get("74.235412"));
+                detailActivity.putExtra("contactId", dataArray.get(position).get("tableId"));
+                detailActivity.putExtra("status", dataArray.get(position).get("saleManId"));
+
                 detailActivity.addFlags(FLAG_ACTIVITY_NEW_TASK);
                 mContext.startActivity(detailActivity);
 

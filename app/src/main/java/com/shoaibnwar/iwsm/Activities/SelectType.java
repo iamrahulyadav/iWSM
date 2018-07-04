@@ -47,7 +47,7 @@ public class SelectType extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(SelectType.this, MainMaps.class);
+                Intent i = new Intent(SelectType.this, VerticalListActivity.class);
                 startActivity(i);
             }
         });

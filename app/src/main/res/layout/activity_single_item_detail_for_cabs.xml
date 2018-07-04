@@ -78,7 +78,7 @@
                         android:id="@+id/tv_contact_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Contact Detail"
+                        android:text="Contact Details"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:textSize="22dp"/>
@@ -92,7 +92,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:layout_marginLeft="40dp">
+                            android:layout_marginLeft="10dp">
                         <TextView
                             android:id="@+id/tv_name"
                             android:layout_width="match_parent"
@@ -116,7 +116,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:layout_marginLeft="40dp">
+                            android:layout_marginLeft="10dp">
                             <TextView
                                 android:id="@+id/tv_phone"
                                 android:layout_width="match_parent"
@@ -135,6 +135,28 @@
                                 android:layout_marginTop="8dp"/>
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginLeft="10dp">
+                            <TextView
+                                android:id="@+id/tv_company"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Company"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="8dp"/>
+                            <TextView
+                                android:id="@+id/tv_m_company"
+                                android:layout_width="match_parent"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="Company Name"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="8dp"/>
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -264,6 +286,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:textColor="@color/black"
                                 android:textStyle="bold"
+                                android:visibility="gone"
                                 android:gravity="center_vertical"
                                 android:layout_marginLeft="5dp"/>
                         </LinearLayout>
@@ -278,37 +301,253 @@
 
 
                     <LinearLayout
+                        android:id="@+id/ll_when_not_assigne"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="50dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
                         <TextView
                             android:id="@+id/tv_last_visit"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Last Visit"
+                            android:text="Order Booker"
                             android:textStyle="bold"
                             android:textSize="22dp"
                             android:textColor="@color/black"
                             android:layout_centerVertical="true" />
 
-                        <TextView
-                            android:id="@+id/tv_m_last_visit"
+                        <RelativeLayout
+                            android:id="@+id/rl_spinner_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/edit_text_background">
+
+                            <Spinner
+                                android:id="@+id/sp_for_sale_persons"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:clickable="false"
+                                android:soundEffectsEnabled="false">
+
+                            </Spinner>
+
+                            <ImageView
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:src="@drawable/spiner_down_arrow"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="5dp"
+                                android:tint="@color/colorPink"/>
+
+                        </RelativeLayout>
+
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="The product is some how demand"
+                            android:orientation="vertical"
+                            android:layout_marginTop="10dp">
+
+                            <LinearLayout
+                                android:id="@+id/ll_start_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginLeft="10dp">
+                                <TextView
+                                    android:id="@+id/tv_start_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Start Date"
+                                    android:layout_weight="1"
+                                    android:textColor="@color/black"
+                                    android:layout_marginTop="8dp"/>
+                                <TextView
+                                    android:id="@+id/tv_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Selet Date"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/black"
+                                    android:layout_marginTop="8dp"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/ll_start_time"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="5dp">
+                                <TextView
+                                    android:id="@+id/tv_start_time"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Start Time"
+
+                                    android:textColor="@color/black"
+                                    android:layout_marginTop="8dp"/>
+                                <TextView
+                                    android:id="@+id/tv_time"
+                                    android:layout_width="match_parent"
+                                    android:layout_weight="1"
+                                    android:textStyle="bold"
+                                    android:layout_height="wrap_content"
+                                    android:text="Select Time"
+                                    android:textColor="@color/black"
+                                    android:layout_marginTop="8dp"/>
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_when_assined"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="50dp"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Order Booker"
+                            android:textStyle="bold"
+                            android:textSize="22dp"
                             android:textColor="@color/black"
-                            android:layout_marginTop="8dp"/>
+                            android:layout_centerVertical="true" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginLeft="10dp">
+                                <TextView
+                                    android:id="@+id/tv_saleman_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Name"
+                                    android:layout_weight="1"
+                                    android:textColor="@color/black"
+                                    android:layout_marginTop="8dp"/>
+                                <TextView
+                                    android:id="@+id/tv_saleman_m_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Shoaib Anwar"
+
+                                    android:textColor="@color/black"
+                                    android:layout_marginTop="8dp"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginLeft="10dp">
+                                <TextView
+                                    android:id="@+id/tv_saleman_phone"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Phone#"
+                                    android:textColor="@color/black"
+                                    android:layout_marginTop="8dp"/>
+                                <TextView
+                                    android:id="@+id/tv_saleman_m_phome"
+                                    android:layout_width="match_parent"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="+92-134-1234567"
+                                    android:textColor="@color/black"
+                                    android:layout_marginTop="8dp"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginLeft="10dp">
+                                <TextView
+                                    android:id="@+id/tv_saleman_satrt_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Start Date"
+                                    android:textColor="@color/black"
+                                    android:layout_marginTop="8dp"/>
+                                <TextView
+                                    android:id="@+id/tv_saleman_m_satrt_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="Start Date"
+                                    android:textColor="@color/black"
+                                    android:layout_marginTop="8dp"/>
+
+                                <TextView
+                                    android:id="@+id/tv_saleman_m_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:visibility="gone"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginLeft="10dp">
+                                <TextView
+                                    android:id="@+id/tv_saleman_satrt_time"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Start Time"
+                                    android:textColor="@color/black"
+                                    android:layout_marginTop="8dp"/>
+                                <TextView
+                                    android:id="@+id/tv_saleman_m_satrt_time"
+                                    android:layout_width="match_parent"
+                                    android:layout_weight="1"
+                                    android:layout_height="wrap_content"
+                                    android:text="Start Time"
+                                    android:textColor="@color/black"
+                                    android:layout_marginTop="8dp"/>
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
 
                     </LinearLayout>
 
+
+
                 </LinearLayout>
-
-
             </RelativeLayout>
 
         </ScrollView>
@@ -321,15 +560,25 @@
             android:layout_alignParentBottom="true"
             android:orientation="horizontal">
             <Button
+                android:id="@+id/bt_confirm_order"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Confrim"
+                android:background="@color/colorPink"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:visibility="gone"/>
+            <Button
                 android:id="@+id/bt_start_assignment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Start Assignment"
-                android:layout_marginRight="4dp"
                 android:background="@color/colorPink"
                 android:textColor="@color/white"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false"
+                android:visibility="gone"/>
 
         </LinearLayout>
 

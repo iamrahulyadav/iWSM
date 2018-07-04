@@ -46,6 +46,12 @@
                     android:text="Phone Number"
                     android:textColor="@color/black"/>
                 <TextView
+                    android:id="@+id/tv_contact_company"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Company Name"
+                    android:textColor="@color/black"/>
+                <TextView
                     android:id="@+id/tv_image_uri"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

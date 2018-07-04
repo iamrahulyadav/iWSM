@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -50,6 +51,8 @@ dependencies {
     implementation 'com.nineoldandroids:library:2.4.0'
 
     implementation 'devs.mulham.horizontalcalendar:horizontalcalendar:1.1.7'
+    //implementation 'com.wdullaer:materialdatetimepicker:3.0.0'
+    implementation 'com.android.support:multidex:1.0.1'
 }
 
 

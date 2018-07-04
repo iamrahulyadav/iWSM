@@ -47,7 +47,7 @@ public class Contacts extends RecyclerView.Adapter<Contacts.MyViewHolder>  {
         public ImageView iv_image ;
         //public TextView custome_tv;
         public RelativeLayout rl_single_item;
-        private TextView tv_contact_name, tv_contact_number, tv_image_uri;
+        private TextView tv_contact_name, tv_contact_number, tv_image_uri, tv_contact_company;
         public TextView tv_address, tv_lat, tv_lng;
         public TextView tv_id, tv_status;
         public TextView tv_assign;
@@ -61,6 +61,8 @@ public class Contacts extends RecyclerView.Adapter<Contacts.MyViewHolder>  {
             rl_single_item = (RelativeLayout) view.findViewById(R.id.rl_single_item);
             tv_contact_name = (TextView) view.findViewById(R.id.tv_contact_name);
             tv_contact_number = (TextView) view.findViewById(R.id.tv_contact_number);
+            tv_contact_company = (TextView) view.findViewById(R.id.tv_contact_company);
+
             tv_image_uri = (TextView) view.findViewById(R.id.tv_image_uri);
             tv_address = (TextView) view.findViewById(R.id.tv_address);
             tv_lat = (TextView) view.findViewById(R.id.tv_lat);
@@ -103,9 +105,11 @@ public class Contacts extends RecyclerView.Adapter<Contacts.MyViewHolder>  {
         if (holder instanceof Contacts.MyViewHolder) {
 
             String mStatus = dataArray.get(position).get("staus");
+            String companyName = dataArray.get(position).get("company");
             holder.tv_contact_name.setText(dataArray.get(position).get("name"));
             holder.tv_contact_number.setText(dataArray.get(position).get("number"));
             holder.tv_address.setText(dataArray.get(position).get("address"));
+            holder.tv_contact_company.setText(companyName);
             holder.tv_lat.setText(dataArray.get(position).get("lat"));
             holder.tv_lng.setText(dataArray.get(position).get("lng"));
             holder.tv_id.setText(dataArray.get(position).get("id"));
@@ -149,6 +153,7 @@ public class Contacts extends RecyclerView.Adapter<Contacts.MyViewHolder>  {
                 String address = holder.tv_address.getText().toString();
                 String lat = holder.tv_lat.getText().toString();
                 String lng = holder.tv_lng.getText().toString();
+                String companyName = holder.tv_contact_company.getText().toString();
 
                 String contact_id = holder.tv_id.getText().toString();
                 String status = holder.tv_status.getText().toString();
@@ -162,6 +167,7 @@ public class Contacts extends RecyclerView.Adapter<Contacts.MyViewHolder>  {
                 i.putExtra("contactName", contactName);
                 i.putExtra("contactNumber", contactNumber);
                 i.putExtra("contactAddress", address);
+                i.putExtra("contactCompany", companyName);
                 i.putExtra("contactLat", lat);
                 i.putExtra("contactLng", lng);
                 i.putExtra("contactId", contact_id);

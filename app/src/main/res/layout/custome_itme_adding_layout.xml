@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/rl_top_title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorPink">
+
+            <ImageView
+                android:id="@+id/iv_back_arrow"
+                android:layout_width="25dp"
+                android:layout_height="15dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:scaleType="fitXY"
+                android:tint="@color/white"
+                android:src="@drawable/arrow_back"/>
+            <TextView
+                android:layout_toRightOf="@id/iv_back_arrow"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:text="Order Detail" />
+
+            <TextView
+                android:id="@+id/tv_confirm"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:text="Next" />
+
+        </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_below="@+id/rl_top_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp">
+
+            <LinearLayout
+                android:id="@+id/ll_main_item_views"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:animateLayoutChanges="true">
+            <FrameLayout
+                android:id="@+id/fl_document_for_first"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:animateLayoutChanges="true">
+
+        <LinearLayout
+            android:id="@+id/ll_item_views"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            <RelativeLayout
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@color/white">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp"
+                android:src="@drawable/baskect_icon"/>
+            </RelativeLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <AutoCompleteTextView
+                    android:id="@+id/et_item_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Item Name"
+                    android:inputType="text"
+                    android:paddingLeft="8dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/light_grey_t"
+                    android:background="@null"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp">
+                    <TextView
+                        android:id="@+id/item_code_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Item Code:"
+                        android:textColor="@color/color_text_hint"/>
+
+                    <TextView
+                        android:id="@+id/tv_item_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="El201"
+                        android:layout_toRightOf="@+id/item_code_text"
+                        android:layout_marginLeft="4dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/color_text_hint"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp">
+                    <TextView
+                        android:id="@+id/unit_price_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Unit Price:"
+                        android:textColor="@color/color_text_hint"/>
+                    <TextView
+                        android:id="@+id/tv_price_rs1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rs."
+                        android:textStyle="bold"
+                        android:layout_toRightOf="@+id/unit_price_text"
+                        android:layout_marginLeft="4dp"
+                        android:textColor="@color/color_text_hint"/>
+
+                    <TextView
+                        android:id="@+id/tv_each_item_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textStyle="bold"
+                        android:layout_toRightOf="@+id/tv_price_rs1"
+                        android:layout_marginLeft="4dp"
+                        android:textColor="@color/color_text_hint"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp">
+                    <TextView
+                        android:id="@+id/item_discount_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Item Discounts:"
+                        android:textColor="@color/color_text_hint"/>
+
+                    <TextView
+                        android:id="@+id/tv_item_discount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0%"
+                        android:textStyle="bold"
+                        android:layout_toRightOf="@+id/item_discount_text"
+                        android:layout_marginLeft="4dp"
+                        android:textColor="@color/color_text_hint"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp">
+                    <TextView
+                        android:id="@+id/total_price_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Price After Discount:"
+                        android:textColor="@color/color_text_hint"/>
+                    <TextView
+                        android:id="@+id/tv_price_rs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rs."
+                        android:textStyle="bold"
+                        android:layout_toRightOf="@+id/total_price_text"
+                        android:layout_marginLeft="4dp"
+                        android:textColor="@color/color_text_hint"/>
+                    <TextView
+                        android:id="@+id/tv_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textStyle="bold"
+                        android:layout_toRightOf="@+id/tv_price_rs"
+                        android:layout_marginLeft="4dp"
+                        android:textColor="@color/color_text_hint"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:id="@+id/iv_item_quantity_less"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/remove_item"
+                        android:tint="@color/colorPink"
+                        android:layout_marginLeft="10dp"
+
+                        android:layout_centerVertical="true"/>
+
+                    <RelativeLayout
+                        android:id="@+id/ll_et_quantitiy"
+                        android:layout_width="120dp"
+                        android:layout_height="35dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/edit_text_background">
+
+                        <TextView
+                            android:id="@+id/et_quantitiy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:textColor="@color/black"
+                            android:text="0"/>
+
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_item_quantity_more"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/add_more"
+                        android:tint="@color/colorPink"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentRight="true"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+            </FrameLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+    </ScrollView>
+    </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_add_more"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/add_more"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="15dp"
+            android:tint="@color/black"/>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

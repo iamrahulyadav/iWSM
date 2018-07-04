@@ -95,6 +95,15 @@
 
     </string-array>
 
+    <string-array name="sale_person">
+        <item>Select Sales Man</item>
+        <item>Nadeem Ali</item>
+    <item>Malik Ahmad</item>
+    <item>Rana Naveed</item>
+    <item>Anas Saeed</item>
+    <item>Umar Khan</item>
+    </string-array>
+
     <string name="user_profile_photo">http://baobaoloveyou.com/flowingdrawer_icon.png</string>
 
 </resources>

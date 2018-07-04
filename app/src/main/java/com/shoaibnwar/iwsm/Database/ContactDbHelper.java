@@ -71,6 +71,16 @@ public class ContactDbHelper {
     String contactLng;
     String contactStatus;
 
+    public String getContactCompany() {
+        return contactCompany;
+    }
+
+    public void setContactCompany(String contactCompany) {
+        this.contactCompany = contactCompany;
+    }
+
+    String contactCompany;
+
 
 
 

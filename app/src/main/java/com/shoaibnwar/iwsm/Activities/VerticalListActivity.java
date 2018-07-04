@@ -13,9 +13,13 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.shoaibnwar.iwsm.Adapters.CustomeAdapterVerticallScrollItems;
+import com.shoaibnwar.iwsm.Database.AssignmentDbHelper;
+import com.shoaibnwar.iwsm.Database.AssignmentesDB;
 import com.shoaibnwar.iwsm.R;
 
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -67,11 +71,58 @@ public class VerticalListActivity extends AppCompatActivity {
         horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
             @Override
             public void onDateSelected(Date date, int position) {
-                Toast.makeText(getApplicationContext(), DateFormat.getDateInstance().format(date) + " is selected!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), DateFormat.getDateInstance().format(date) + " is selected!", Toast.LENGTH_SHORT).show();
+                String curretFormatedDate  = DateFormat.getDateInstance().format(date).toString();
+                String resultDate = parseDateToddMMyyyy(curretFormatedDate);
+                Log.e("TAG", "the selcted Date is current" + curretFormatedDate);
+                Log.e("TAG", "the selcted Date is " + resultDate);
 
-                /*customeAdapterForImage = new CustomeAdapterVerticallScrollItems(getApplicationContext(), dataList);
+                AssignmentesDB db = new AssignmentesDB(VerticalListActivity.this);
+                ArrayList<AssignmentDbHelper> assignmentList  = db.getAllCurrentDateRecord(resultDate);
+
+                dataList = new ArrayList<>();
+
+                for (AssignmentDbHelper assignmentDbHelper : assignmentList){
+
+                    HashMap<String, String> itemList = new HashMap<>();
+
+                    String tableId = assignmentDbHelper.getId();
+                    String assignerContactId = assignmentDbHelper.getAssignerID();
+                    String assignerName = assignmentDbHelper.getAssignerName();
+                    String assignerContact  = assignmentDbHelper.getAssignerContact();
+                    String assignerCompany = assignmentDbHelper.getAssignerCompany();
+                    String assignerAddress = assignmentDbHelper.getAssignerAddress();
+                    String startdate = assignmentDbHelper.getStartDate();
+                    String startTime = assignmentDbHelper.getStartTime();
+                    String saleManName = assignmentDbHelper.getSalemanName();
+                    String saleManContact = assignmentDbHelper.getSalemanContact();
+                    String saleManAddress = assignmentDbHelper.getSalemanAddress();
+                    String saleManId = assignmentDbHelper.getSalemanId();
+
+                    itemList.put("tableId", tableId);
+                    itemList.put("assignerContactId", assignerContactId);
+                    itemList.put("assignerName", assignerName);
+                    itemList.put("assignerContact", assignerContact);
+                    itemList.put("assignerCompany", assignerCompany);
+                    itemList.put("assignerAddress", assignerAddress);
+                    itemList.put("startdate", startdate);
+                    Log.e("TAg", "the selected Date is from db " + startdate);
+                    itemList.put("startTime", startTime);
+                    itemList.put("saleManName", saleManName);
+                    itemList.put("saleManContact", saleManContact);
+                    itemList.put("saleManAddress", saleManAddress);
+                    itemList.put("saleManId", saleManId);
+                    dataList.add(itemList);
+
+                }
+
+                Log.e("TAG", "the array list size is: " + dataList.size());
+                //edit by shoaib anwar
+                customeAdapterForImage = new CustomeAdapterVerticallScrollItems(getApplicationContext(), dataList);
                 rc_list.setAdapter(customeAdapterForImage);
-                customeAdapterForImage.notifyDataSetChanged();*/
+                customeAdapterForImage.notifyDataSetChanged();
+
+
             }
 
         });
@@ -86,12 +137,49 @@ public class VerticalListActivity extends AppCompatActivity {
         iv_back_arrow = (ImageView) findViewById(R.id.iv_back_arrow);
         linearLayoutManager = new LinearLayoutManager(VerticalListActivity.this, LinearLayoutManager.VERTICAL, false);
         rc_list.setLayoutManager(linearLayoutManager);
-        dataList = ( ArrayList<HashMap<String, String>>) getIntent().getSerializableExtra("mylist");
+        //dataList = ( ArrayList<HashMap<String, String>>) getIntent().getSerializableExtra("mylist");
+       /* AssignmentesDB db = new AssignmentesDB(VerticalListActivity.this);
+        ArrayList<AssignmentDbHelper> assignmentList  = db.getAllAsignments();
+        dataList = new ArrayList<>();
+
+        for (AssignmentDbHelper assignmentDbHelper : assignmentList){
+
+            HashMap<String, String> itemList = new HashMap<>();
+
+            String tableId = assignmentDbHelper.getId();
+            String assignerContactId = assignmentDbHelper.getAssignerID();
+            String assignerName = assignmentDbHelper.getAssignerName();
+            String assignerContact  = assignmentDbHelper.getAssignerContact();
+            String assignerCompany = assignmentDbHelper.getAssignerCompany();
+            String assignerAddress = assignmentDbHelper.getAssignerAddress();
+            String startdate = assignmentDbHelper.getStartDate();
+            String startTime = assignmentDbHelper.getStartTime();
+            String saleManName = assignmentDbHelper.getSalemanName();
+            String saleManContact = assignmentDbHelper.getSalemanContact();
+            String saleManAddress = assignmentDbHelper.getSalemanAddress();
+            String saleManId = assignmentDbHelper.getSalemanId();
+
+            itemList.put("tableId", tableId);
+            itemList.put("assignerContactId", assignerContactId);
+            itemList.put("assignerName", assignerName);
+            itemList.put("assignerContact", assignerContact);
+            itemList.put("assignerCompany", assignerCompany);
+            itemList.put("assignerAddress", assignerAddress);
+            itemList.put("startdate", startdate);
+            Log.e("TAg", "the selected Date is from db " + startdate);
+            itemList.put("startTime", startTime);
+            itemList.put("saleManName", saleManName);
+            itemList.put("saleManContact", saleManContact);
+            itemList.put("saleManAddress", saleManAddress);
+            itemList.put("saleManId", saleManId);
+            dataList.add(itemList);
+
+        }
 
         Log.e("TAG", "the array list size is: " + dataList.size());
         //edit by shoaib anwar
         customeAdapterForImage = new CustomeAdapterVerticallScrollItems(getApplicationContext(), dataList);
-        rc_list.setAdapter(customeAdapterForImage);
+        rc_list.setAdapter(customeAdapterForImage);*/
 
     }
 
@@ -113,4 +201,23 @@ public class VerticalListActivity extends AppCompatActivity {
             }
         });
     }
+
+    public String parseDateToddMMyyyy(String time) {
+        String inputPattern = "MMM dd, yyyy";
+        String outputPattern = "dd-MMM-yyyy";
+        SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
+        SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
+
+        Date date = null;
+        String str = null;
+
+        try {
+            date = inputFormat.parse(time);
+            str = outputFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return str;
+    }
+
 }

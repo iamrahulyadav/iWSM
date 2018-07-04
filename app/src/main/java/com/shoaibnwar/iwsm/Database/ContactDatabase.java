@@ -26,10 +26,11 @@ public class ContactDatabase extends SQLiteOpenHelper {
     public static final String Col_5 = "contactlat";
     public static final String Col_6 = "contactlng";
     public static final String Col_7 = "contactbookstatus";
+    public static final String Col_8 = "contactcompany";
 
 
 
-    String CREATE_TABLE_CALL = "CREATE TABLE " + NAME_OF_TABLE + "(" + Col_1 + " integer PRIMARY KEY AUTOINCREMENT," + Col_2 + " TEXT, " + Col_3 + " TEXT, " + Col_4 + " TEXT, " + Col_5 + " TEXT, " + Col_6 + " TEXT, " + Col_7 + " TEXT " + ")";
+    String CREATE_TABLE_CALL = "CREATE TABLE " + NAME_OF_TABLE + "(" + Col_1 + " integer PRIMARY KEY AUTOINCREMENT," + Col_2 + " TEXT, " + Col_3 + " TEXT, " + Col_4 + " TEXT, " + Col_5 + " TEXT, " + Col_6 + " TEXT, " + Col_7 + " TEXT, " + Col_8 + " TEXT " + ")";
 
 
    public ContactDatabase(Context context) {
@@ -68,6 +69,7 @@ public class ContactDatabase extends SQLiteOpenHelper {
         values.put(Col_5, post.getContactLat());
         values.put(Col_6, post.getContactLng());
         values.put(Col_7, post.getContactStatus());
+        values.put(Col_8, post.getContactCompany());
 
         Log.e("TAg", "name name name  " + post.getContactName());
         //inserting valuse into table columns
@@ -95,8 +97,7 @@ public class ContactDatabase extends SQLiteOpenHelper {
                 String contactLat = c.getString(c.getColumnIndex(Col_5));
                 String contactLng = c.getString(c.getColumnIndex(Col_6));
                 String contactStatus = c.getString(c.getColumnIndex(Col_7));
-
-
+                String contactCompany = c.getString(c.getColumnIndex(Col_8));
 
                 myHelper.setId(id);
                 myHelper.setContactName(contactName);
@@ -105,6 +106,7 @@ public class ContactDatabase extends SQLiteOpenHelper {
                 myHelper.setContactLat(contactLat);
                 myHelper.setContactLng(contactLng);
                 myHelper.setContactStatus(contactStatus);
+                myHelper.setContactCompany(contactCompany);
                 //adding data to array list
                 addingToList.add(myHelper);
 

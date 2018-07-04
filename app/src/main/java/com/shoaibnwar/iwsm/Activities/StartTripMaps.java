@@ -119,6 +119,8 @@ public class StartTripMaps extends FragmentActivity implements OnMapReadyCallbac
     private TextView  tv_reaching_time;
     private ImageView iv_back_arrow;
 
+    private TextView tv_address_line_1, tv_address_line_2;
+    private TextView tv_delivery_Date, tv_delivery_time;
 
 
     @Override
@@ -127,6 +129,7 @@ public class StartTripMaps extends FragmentActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_start_trip_maps);
 
       init();
+      gettingIntentValues();
       btArrivedClickHandler();
 
 
@@ -168,8 +171,29 @@ public class StartTripMaps extends FragmentActivity implements OnMapReadyCallbac
         tv_reaching_time = (TextView)findViewById(R.id.tv_reaching_time);
 
         iv_back_arrow = (ImageView) findViewById(R.id.iv_back_arrow);
+        tv_address_line_1 = (TextView) findViewById(R.id.tv_address_line_1);
+        tv_address_line_2 = (TextView) findViewById(R.id.tv_address_line_2);
+        tv_delivery_Date = (TextView) findViewById(R.id.tv_delivery_Date);
+        tv_delivery_time = (TextView) findViewById(R.id.tv_delivery_time);
 
     }//end of init
+
+
+    private void gettingIntentValues(){
+
+        Intent intent = getIntent();
+        String address = intent.getStringExtra("address");
+        String bookingDate = intent.getStringExtra("bookingDate");
+        String bookingTime = intent.getStringExtra("bookingTime");
+
+        tv_address_line_1.setText(address);
+        if (!address.contains("Pakistan")) {
+            tv_address_line_2.setText("Lahor, Pakistan");
+        }else {tv_address_line_2.setText("");}
+        tv_delivery_Date.setText("Booking Date " +bookingDate);
+        tv_delivery_time.setText("Booking Time "+bookingTime);
+
+    }
 
     private ArrayList<LatLng> generateLocations() {
         ArrayList<LatLng> locations = new ArrayList<LatLng>();

@@ -305,8 +305,7 @@ public class ContactsList extends AppCompatActivity {
             String ContactLat = helper.getContactLat().toString();
             String ContactLng = helper.getContactLng().toString();
             String ContactStatus = helper.getContactStatus().toString();
-
-
+            String ContactCompany = helper.getContactCompany().toString();
 
             HashMap<String, String> contactDetail = new HashMap<>();
             contactDetail.put("id", contactId);
@@ -317,6 +316,7 @@ public class ContactsList extends AppCompatActivity {
             contactDetail.put("lng", ContactLng);
             contactDetail.put("address", ContactAddress);
             contactDetail.put("staus", ContactStatus);
+            contactDetail.put("company", ContactCompany);
             contactsList.add(contactDetail);
 
 

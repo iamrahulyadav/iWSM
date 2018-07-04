@@ -39,11 +39,10 @@ public class OrderTaking extends AppCompatActivity {
     LinearLayout ll_main_item_views;
     TextView top_tv_confirm;
     TextView top_et_quantitiy;
+    RelativeLayout top_ll_et_quantitiy;
     ImageView top_iv_item_quantity_less, top_iv_item_quantity_more;
     AutoCompleteTextView top_et_item_name;
-    TextView top_tv_price_text;
     TextView top_tv_price;
-    RelativeLayout top_rl_price;
     TextView top_tv_each_item_price;
 
     int mPrice = 0;
@@ -55,22 +54,17 @@ public class OrderTaking extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_taking);
+        setContentView(R.layout.custome_itme_adding_layout);
 
         init();
         addMoreClickHandler();
         onBackArrwoPressListener();
         confirmTextClickHandler();
         hardCodedData();
-
-        addMoreItemClickHandler(top_iv_item_quantity_more, top_et_quantitiy, top_tv_price_text, top_tv_price, top_tv_each_item_price);
-        lestItemQuantityClickHandler(top_iv_item_quantity_less, top_et_quantitiy, top_tv_price_text, top_tv_price, top_tv_each_item_price);
-        onTaxkChangeListener(itemList, top_et_item_name, top_et_quantitiy, top_tv_price_text, top_tv_price, top_rl_price, top_tv_each_item_price);
-
-
-
-
-
+        firstTimeLoadingView();
+        addMoreItemClickHandler(top_iv_item_quantity_more, top_et_quantitiy, top_ll_et_quantitiy, top_tv_price, top_tv_each_item_price);
+        lestItemQuantityClickHandler(top_iv_item_quantity_less, top_et_quantitiy, top_ll_et_quantitiy,  top_tv_price, top_tv_each_item_price);
+        onTaxkChangeListener(itemList, top_et_item_name, top_et_quantitiy, top_ll_et_quantitiy, top_tv_price, top_tv_each_item_price);
     }
 
     private void init(){
@@ -82,9 +76,9 @@ public class OrderTaking extends AppCompatActivity {
         top_iv_item_quantity_less = (ImageView) findViewById(R.id.iv_item_quantity_less);
         top_iv_item_quantity_more = (ImageView) findViewById(R.id.iv_item_quantity_more);
         top_et_quantitiy = (TextView) findViewById(R.id.et_quantitiy);
-        top_tv_price_text = (TextView) findViewById(R.id.tv_price_text);
+        top_ll_et_quantitiy = (RelativeLayout) findViewById(R.id.ll_et_quantitiy);
         top_tv_price = (TextView) findViewById(R.id.tv_price);
-        top_rl_price = (RelativeLayout) findViewById(R.id.rl_price);
+
 
         itemList = new ArrayList<>();
         itemListConfirm = new ArrayList<>();
@@ -108,7 +102,7 @@ public class OrderTaking extends AppCompatActivity {
 
                 LinearLayout ll_inflate_document_for_experienceInner = (LinearLayout) rowView.findViewById(R.id.ll_to_inflat);
                 ll_main_item_views.addView(rowView, ll_main_item_views.getChildCount());
-                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.let_to_right);
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.right_to_left_for_procuts_item_views);
                 rowView.setAnimation(animation);
                 ImageView ivCrose = (ImageView) rowView.findViewById(R.id.iv_cross_item_view);
                 ivCrose.bringToFront();
@@ -116,20 +110,23 @@ public class OrderTaking extends AppCompatActivity {
                 AutoCompleteTextView et_item_name = (AutoCompleteTextView) rowView.findViewById(R.id.et_item_name) ;
                 TextView tv_quantitiy =  (TextView) rowView.findViewById(R.id.tv_quantitiy);
                 TextView et_quantitiy = (TextView) rowView.findViewById(R.id.et_quantitiy);
+                RelativeLayout ll_et_quantitiy = (RelativeLayout) rowView.findViewById(R.id.ll_et_quantitiy);
+                TextView tv_price = (TextView) rowView.findViewById(R.id.tv_price);
                 ImageView iv_item_quantity_less = (ImageView) rowView.findViewById(R.id.iv_item_quantity_less);
                 ImageView iv_item_quantity_more = (ImageView) rowView.findViewById(R.id.iv_item_quantity_more);
-                TextView tv_price_text = (TextView) rowView.findViewById(R.id.tv_price_text);
-                TextView tv_price = (TextView) rowView.findViewById(R.id.tv_price);
-                EditText et_item_detail = (EditText) rowView.findViewById(R.id.et_item_detail);
-                RelativeLayout rl_price = (RelativeLayout) rowView.findViewById(R.id.rl_price);
+
                 TextView tv_each_item_price = (TextView) rowView.findViewById(R.id.tv_each_item_price);
+                TextView tv_line = (TextView) rowView.findViewById(R.id.tv_line);
+                int childCountInView = ll_main_item_views.getChildCount();
+                if (childCountInView==1){
+                    tv_line.setVisibility(View.GONE);
+                }
 
-
-                addDapter(itemList, et_item_name, et_quantitiy, tv_price_text, tv_price, rl_price, tv_each_item_price);
-                addMoreItemClickHandler(iv_item_quantity_more, et_quantitiy, tv_price_text, tv_price, tv_each_item_price);
-                lestItemQuantityClickHandler(iv_item_quantity_less, et_quantitiy, tv_price_text, tv_price, tv_each_item_price);
-                onTaxkChangeListener(itemList, et_item_name, et_quantitiy, tv_price_text, tv_price, rl_price, tv_each_item_price);
-                EnterQuantityNumber(et_quantitiy, tv_price, tv_price_text, rl_price, tv_each_item_price);
+                addDapter(itemList, et_item_name, et_quantitiy, tv_price, tv_each_item_price);
+                addMoreItemClickHandler(iv_item_quantity_more, et_quantitiy, ll_et_quantitiy, tv_price, tv_each_item_price);
+                lestItemQuantityClickHandler(iv_item_quantity_less, et_quantitiy, ll_et_quantitiy, tv_price, tv_each_item_price);
+                onTaxkChangeListener(itemList, et_item_name, et_quantitiy, ll_et_quantitiy, tv_price, tv_each_item_price);
+                EnterQuantityNumber(ll_et_quantitiy, et_quantitiy, tv_price, tv_each_item_price);
 
                 deleteingView(rowView, ivCrose);
 
@@ -152,6 +149,8 @@ public class OrderTaking extends AppCompatActivity {
                 parent.removeView(myView);
                 Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.right_to_left);
                 myView.setAnimation(animation);
+
+
 
             }
         });
@@ -201,14 +200,15 @@ public class OrderTaking extends AppCompatActivity {
                         AutoCompleteTextView et_item_name = (AutoCompleteTextView) mViews.findViewById(R.id.et_item_name) ;
                         TextView tv_quantitiy =  (TextView) mViews.findViewById(R.id.tv_quantitiy);
                         TextView et_quantitiy = (TextView) mViews.findViewById(R.id.et_quantitiy);
+                        RelativeLayout ll_et_quantitiy = (RelativeLayout) mViews.findViewById(R.id.ll_et_quantitiy);
                         ImageView iv_item_quantity_less = (ImageView) mViews.findViewById(R.id.iv_item_quantity_less);
                         ImageView iv_item_quantity_more = (ImageView) mViews.findViewById(R.id.iv_item_quantity_more);
                         TextView tv_price_text = (TextView) mViews.findViewById(R.id.tv_price_text);
                         TextView tv_price = (TextView) mViews.findViewById(R.id.tv_price);
-                        EditText et_item_detail = (EditText) mViews.findViewById(R.id.et_item_detail);
+
                         String itemName = et_item_name.getText().toString();
                         String itemQuantity = et_quantitiy.getText().toString();
-                        String itemDetail = et_item_detail.getText().toString();
+
                         String itemPrice = tv_price.getText().toString();
 
                         if (itemName.length()==0){
@@ -219,13 +219,13 @@ public class OrderTaking extends AppCompatActivity {
 
                             Log.e("TAg", "the item detail here item name: " + itemName);
                             Log.e("TAg", "the item detail here item itemQuantity: " + itemQuantity);
-                            Log.e("TAg", "the item detail here item itemDetail: " + itemDetail);
+
                             Log.e("TAg", "the item detail here item itemPrice: " + itemPrice);
 
                             dataList.put("itemName", itemName);
                             dataList.put("itemPrice", itemPrice);
                             dataList.put("itemQuantity", itemQuantity);
-                            dataList.put("itemDetail", itemDetail);
+                            dataList.put("itemDetail", "");
                             itemListConfirm.add(dataList);
                         }
                     }
@@ -260,11 +260,11 @@ public class OrderTaking extends AppCompatActivity {
         }
 
 
-        addDapter(itemList, top_et_item_name, top_et_quantitiy, top_tv_price_text, top_tv_price, top_rl_price, top_tv_each_item_price);
-        EnterQuantityNumber(top_et_quantitiy, top_tv_price, top_tv_price_text, top_rl_price, top_tv_each_item_price);
+        addDapter(itemList, top_et_item_name, top_et_quantitiy, top_tv_price, top_tv_each_item_price);
+        EnterQuantityNumber(top_ll_et_quantitiy, top_et_quantitiy, top_tv_price, top_tv_each_item_price);
     }
 
-    private void addDapter(ArrayList<HashMap<String, String>> datList, final AutoCompleteTextView et_item_name, final TextView et_quantitiy, final TextView tv_price_text, final TextView tv_price, final RelativeLayout rl_price, final TextView tv_each_item_price) {
+    private void addDapter(ArrayList<HashMap<String, String>> datList, final AutoCompleteTextView et_item_name, final TextView et_quantitiy,  final TextView tv_price, final TextView tv_each_item_price) {
 
         CustomeItem customeItem = new CustomeItem(OrderTaking.this, datList);
 
@@ -288,8 +288,6 @@ public class OrderTaking extends AppCompatActivity {
                 et_quantitiy.setText("1");
                 Log.e("TAg", "Name of product " + mName);
                 Log.e("TAg", "Name of product price " + PRICE);
-                rl_price.setVisibility(View.VISIBLE);
-                tv_price_text.setText("Price Rs ");
                 tv_price.setText(PRICE);
                 mPrice = Integer.valueOf(PRICE);
                 tv_each_item_price.setText(PRICE);
@@ -300,25 +298,25 @@ public class OrderTaking extends AppCompatActivity {
         });
     }
 
-    private void addMoreItemClickHandler(ImageView ivMore, final TextView et_quantitiy, final TextView top_tv_price_text, final TextView tv_price, final TextView tv_each_item_price){
+    private void addMoreItemClickHandler(ImageView ivMore, final TextView et_quantitiy, final RelativeLayout ll_et_quantitiy, final TextView tv_price, final TextView tv_each_item_price){
         ivMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (et_quantitiy.length()>0) {
-                    addMoreQuanity(et_quantitiy, top_tv_price_text, tv_price, tv_each_item_price);
+                    addMoreQuanity(et_quantitiy, tv_price, tv_each_item_price);
                 }
 
             }
         });
     }
-    private void lestItemQuantityClickHandler(ImageView ivLess, final TextView et_quantitiy, final TextView top_tv_price_text, final TextView tv_price, final TextView tv_each_item_price){
+    private void lestItemQuantityClickHandler(ImageView ivLess, final TextView et_quantitiy, final RelativeLayout ll_et_quantitiy, final TextView tv_price, final TextView tv_each_item_price){
         ivLess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (et_quantitiy.length()>0) {
-                    leesQuanity(et_quantitiy, top_tv_price_text, tv_price, tv_each_item_price);
+                    leesQuanity(et_quantitiy, tv_price, tv_each_item_price);
 
                 }
             }
@@ -326,7 +324,7 @@ public class OrderTaking extends AppCompatActivity {
 
     }
 
-    private void addMoreQuanity(TextView view, TextView tv_price_text, TextView tvPrice, TextView tv_each_item_price){
+    private void addMoreQuanity(TextView view, TextView tvPrice, TextView tv_each_item_price){
 
         String text = view.getText().toString();
         int intValue = Integer.valueOf(text);
@@ -338,12 +336,11 @@ public class OrderTaking extends AppCompatActivity {
             int price = pri + mPrice;
 
             String curentPrice = String.valueOf(price);
-            tv_price_text.setText("Price Rs.");
             tvPrice.setText(curentPrice);
         }
 
     }
-    private void leesQuanity(TextView view, TextView tv_price_text, TextView tvPrice, TextView tv_each_item_price){
+    private void leesQuanity(TextView view, TextView tvPrice, TextView tv_each_item_price){
 
         String text = view.getText().toString();
         int intValue = Integer.valueOf(text);
@@ -357,14 +354,13 @@ public class OrderTaking extends AppCompatActivity {
             int pri = Integer.valueOf(tvPrice.getText().toString());
             int price = pri-mPrice;
             String curentPrice = String.valueOf(price);
-            tv_price_text.setText("Price Rs.");
             tvPrice.setText(curentPrice);
 
         }
         }
     }
 
-    private void onTaxkChangeListener(final ArrayList<HashMap<String, String>> dList, final AutoCompleteTextView editText, final TextView et_quatitiy, final TextView tv_price_text, final TextView tv_price, final RelativeLayout rl_price, final TextView tv_each_item_price){
+    private void onTaxkChangeListener(final ArrayList<HashMap<String, String>> dList, final AutoCompleteTextView editText, final TextView et_quatitiy, final RelativeLayout ll_et_quantitiy,  final TextView tv_price, final TextView tv_each_item_price){
 
 
         editText.addTextChangedListener(new TextWatcher() {
@@ -376,27 +372,26 @@ public class OrderTaking extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                addDapter(dList, editText, et_quatitiy, tv_price_text,  tv_price, rl_price, tv_each_item_price);
+                addDapter(dList, editText, et_quatitiy,  tv_price, tv_each_item_price);
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
                 if (s.length()==0){
-                    tv_price_text.setText("");
+
                     tv_price.setText("");
                     mPrice = 0;
                     et_quatitiy.setText("0");
-                    rl_price.setVisibility(View.GONE);
                 }
             }
         });
 
     }
 
-private void EnterQuantityNumber(final TextView tvQuantityNumbers, final TextView PRICE, final TextView priceTEXT, final RelativeLayout rl_price, final TextView tv_each_item_price){
+private void EnterQuantityNumber(final RelativeLayout ll_et_quantitiy, final TextView tvQuantityNumbers, final TextView PRICE,  final TextView tv_each_item_price){
 
-        tvQuantityNumbers.setOnClickListener(new View.OnClickListener() {
+    ll_et_quantitiy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -424,9 +419,7 @@ private void EnterQuantityNumber(final TextView tvQuantityNumbers, final TextVie
                             int price = pri*curQuantities;
                             Log.e("TAg", "the value for item is: " + price);
                             String curentPrice = String.valueOf(price);
-                            priceTEXT.setText("Price Rs.");
                             PRICE.setText(curentPrice);
-                            rl_price.setVisibility(View.VISIBLE);
 
                         }
                         InputMethodManager imm = (InputMethodManager)getSystemService(
@@ -443,4 +436,38 @@ private void EnterQuantityNumber(final TextView tvQuantityNumbers, final TextVie
         });
     }
 
+    private void firstTimeLoadingView(){
+
+
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View rowView = inflater.inflate(R.layout.custome_addmore_product
+                , null);
+        ll_main_item_views.removeAllViews();
+        LinearLayout ll_inflate_document_for_experienceInner = (LinearLayout) rowView.findViewById(R.id.ll_to_inflat);
+        ll_main_item_views.addView(rowView, ll_main_item_views.getChildCount());
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.right_to_left_for_procuts_item_views);
+        rowView.setAnimation(animation);
+        ImageView ivCrose = (ImageView) rowView.findViewById(R.id.iv_cross_item_view);
+        ivCrose.bringToFront();
+
+        AutoCompleteTextView et_item_name = (AutoCompleteTextView) rowView.findViewById(R.id.et_item_name) ;
+        TextView tv_quantitiy =  (TextView) rowView.findViewById(R.id.tv_quantitiy);
+        TextView et_quantitiy = (TextView) rowView.findViewById(R.id.et_quantitiy);
+        RelativeLayout ll_et_quantitiy = (RelativeLayout) rowView.findViewById(R.id.ll_et_quantitiy);
+        TextView tv_price = (TextView) rowView.findViewById(R.id.tv_price);
+        ImageView iv_item_quantity_less = (ImageView) rowView.findViewById(R.id.iv_item_quantity_less);
+        ImageView iv_item_quantity_more = (ImageView) rowView.findViewById(R.id.iv_item_quantity_more);
+        TextView tv_each_item_price = (TextView) rowView.findViewById(R.id.tv_each_item_price);
+
+        TextView tv_line = (TextView) findViewById(R.id.tv_line);
+        tv_line.setVisibility(View.GONE);
+
+        addDapter(itemList, et_item_name, et_quantitiy, tv_price, tv_each_item_price);
+        addMoreItemClickHandler(iv_item_quantity_more, et_quantitiy, ll_et_quantitiy, tv_price, tv_each_item_price);
+        lestItemQuantityClickHandler(iv_item_quantity_less, et_quantitiy, ll_et_quantitiy, tv_price, tv_each_item_price);
+        onTaxkChangeListener(itemList, et_item_name, et_quantitiy, ll_et_quantitiy, tv_price, tv_each_item_price);
+        EnterQuantityNumber(ll_et_quantitiy, et_quantitiy, tv_price, tv_each_item_price);
+
+        deleteingView(rowView, ivCrose);
+    }
 }
