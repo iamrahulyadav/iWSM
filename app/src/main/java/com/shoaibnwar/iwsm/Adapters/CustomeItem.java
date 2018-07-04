@@ -58,9 +58,11 @@ public class CustomeItem extends BaseAdapter implements Filterable {
 
         TextView txtName = (TextView) view.findViewById(R.id.tv_title);
         TextView txtId = (TextView) view.findViewById(R.id.tv_price);
+        TextView txtItemCode = (TextView) view.findViewById(R.id.tv_item_code);
 
         txtName.setText(beanList.get(i).get("Name"));
         txtId.setText(beanList.get(i).get("Price"));
+        txtItemCode.setText(beanList.get(i).get("Code"));
         return view;
     }
 
@@ -81,14 +83,17 @@ public class CustomeItem extends BaseAdapter implements Filterable {
                 ArrayList<HashMap<String, String>> filterList = new ArrayList<>();
                 for (int i = 0; i < beanList.size(); i++) {
 
-                    if ((beanList.get(i).get("Name").toUpperCase()).contains(constraint.toString().toUpperCase())) {
+                    if ((beanList.get(i).get("Name").toUpperCase()).contains(constraint.toString().toUpperCase()) ||
+                            (beanList.get(i).get("Code").toUpperCase()).contains(constraint.toString().toUpperCase())) {
 
 
                         HashMap<String, String> list = new HashMap<>();
                         String name = beanList.get(i).get("Name");
                         String price = beanList.get(i).get("Price");
+                        String itemCode = beanList.get(i).get("Code");
                         list.put("Name", name);
                         list.put("Price", price);
+                        list.put("Code", itemCode);
 
                         filterList.add(list);
 

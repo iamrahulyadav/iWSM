@@ -54,10 +54,141 @@
         </RelativeLayout>
 
 
+        <LinearLayout
+            android:id="@+id/ll_hearder_for_items"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@+id/rl_top_title_bar"
+            android:orientation="horizontal"
+            android:background="@color/black">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/grid_item_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Image"
+                    android:padding="4dp"
+                    android:textColor="@color/white"
+                    android:layout_centerInParent="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/grid_item_background">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Item Name"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:padding="4dp"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/grid_item_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Item Code"
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:textColor="@color/white"
+                    android:layout_centerInParent="true"/>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/grid_item_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Unit Price"
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:textColor="@color/white"
+                    android:layout_centerInParent="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/grid_item_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quantities"
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:textColor="@color/white"
+                    android:layout_centerInParent="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/grid_item_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Discount"
+                    android:padding="4dp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_centerInParent="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/grid_item_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Price"
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:textColor="@color/white"
+                    android:layout_centerInParent="true"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rl_top_title_bar">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ll_hearder_for_items"
+            android:layout_marginBottom="60dp">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rc_items"
@@ -89,7 +220,7 @@
                 android:layout_below="@+id/tv_item_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Price Rs.450"
+                android:text="Total Sum Rs.450"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:layout_marginLeft="50dp"/>

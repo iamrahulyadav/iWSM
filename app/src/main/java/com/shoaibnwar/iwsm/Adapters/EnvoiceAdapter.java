@@ -36,16 +36,21 @@ public class EnvoiceAdapter extends RecyclerView.Adapter<EnvoiceAdapter.MyViewHo
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
 
-        private TextView tv_item_name, tv_item_quantity, tv_item_price, tv_count;
-
+        private ImageView iv_item_image;
+        private TextView iv_order_id;
+        private TextView tv_item_name, tv_item_code, tv_item_unit_price, tv_item_quantity, tv_item_discount, tv_item_total_price;
 
         public MyViewHolder(final View view) {
             super(view);
 
+            iv_order_id = (TextView) view.findViewById(R.id.iv_order_id);
+            iv_item_image = (ImageView) view.findViewById(R.id.iv_item_image);
             tv_item_name = (TextView) view.findViewById(R.id.tv_item_name);
+            tv_item_code = (TextView) view.findViewById(R.id.tv_item_code);
+            tv_item_unit_price = (TextView) view.findViewById(R.id.tv_item_unit_price);
             tv_item_quantity = (TextView) view.findViewById(R.id.tv_item_quantity);
-            tv_item_price = (TextView) view.findViewById(R.id.tv_item_price);
-            tv_count = (TextView) view.findViewById(R.id.tv_count);
+            tv_item_discount = (TextView) view.findViewById(R.id.tv_item_discount);
+            tv_item_total_price = (TextView) view.findViewById(R.id.tv_item_total_price);
 
 
         }
@@ -69,7 +74,7 @@ public class EnvoiceAdapter extends RecyclerView.Adapter<EnvoiceAdapter.MyViewHo
 
         Log.e("TAg", "the view type : " + viewType);
 
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.custome_invoice_layout, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.custome_layout_confirmation_screen, parent, false);
         viewHolder = new MyViewHolder(itemView);
 
         return viewHolder;
@@ -80,10 +85,22 @@ public class EnvoiceAdapter extends RecyclerView.Adapter<EnvoiceAdapter.MyViewHo
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         if (holder instanceof MyViewHolder) {
             int pp = position+1;
-            holder.tv_count.setText(dataArray.get(position).get("itemName").toString());
-            holder.tv_item_name.setText(dataArray.get(position).get("itemName").toString());
-            holder.tv_item_quantity.setText(dataArray.get(position).get("itemQuantity").toString());
-            holder.tv_item_price.setText(dataArray.get(position).get("itemPrice").toString());
+
+            String ordreItemId = dataArray.get(position).get("ordreItemId").toString();
+            String itemName = dataArray.get(position).get("itemName").toString();
+            String itemCode = dataArray.get(position).get("itemCode").toString();
+            String unitPrice = dataArray.get(position).get("unitPrice").toString();
+            String itemQuantity = dataArray.get(position).get("itemQuantity").toString();
+            String itemDiscount = dataArray.get(position).get("itemDiscount").toString();
+            String itemPrice = dataArray.get(position).get("itemPrice").toString();
+
+            holder.iv_order_id.setText(ordreItemId);
+            holder.tv_item_name.setText(itemName);
+            holder.tv_item_code.setText(itemCode);
+            holder.tv_item_unit_price.setText(unitPrice);
+            holder.tv_item_quantity.setText(itemQuantity);
+            holder.tv_item_discount.setText(itemDiscount);
+            holder.tv_item_total_price.setText(itemPrice);
 
 
         }

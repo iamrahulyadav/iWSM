@@ -1,5 +1,6 @@
 package com.shoaibnwar.iwsm.Activities;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -179,7 +180,7 @@ public class SingleItemDetailActivityForCabs extends AppCompatActivity implement
             public void onClick(View v) {
 
                 Intent i = new Intent(SingleItemDetailActivityForCabs.this, MapsAssignemntSearch.class);
-                startActivity(i);
+                startActivityForResult(i, 201);
             }
         });
 
@@ -217,7 +218,7 @@ public class SingleItemDetailActivityForCabs extends AppCompatActivity implement
 
         imageUrl = intentData.getStringExtra("imageUrl");
 
-        if (!imageUrl.equals("-1")) {
+       /* if (!imageUrl.equals("-1")) {
             Log.e("TAg", "the image url is: " + imageUrl);
             Picasso.with(SingleItemDetailActivityForCabs.this)
                     .load(imageUrl)
@@ -232,7 +233,7 @@ public class SingleItemDetailActivityForCabs extends AppCompatActivity implement
                     //.fit()
                     .into(iv_person2);
 
-        }
+        }*/
 
 
 
@@ -862,9 +863,28 @@ public class SingleItemDetailActivityForCabs extends AppCompatActivity implement
                 startAssignemnts.putExtra("address", address);
                 startAssignemnts.putExtra("bookingDate", bookingDate);
                 startAssignemnts.putExtra("bookingTime", bookingTime);
+                startAssignemnts.putExtra("assignerId", contactNumber);
+                startAssignemnts.putExtra("salemanid", saleManContact);
                 startActivity(startAssignemnts);
             }
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 201) {
+            if(resultCode == Activity.RESULT_OK){
+                String Address=data.getStringExtra("result");
+                tv_address_line_1.setText(Address);
+                if (Address.contains("Pakistan")){
+                    tv_address_line_2.setVisibility(View.GONE);
+                }
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }
 }

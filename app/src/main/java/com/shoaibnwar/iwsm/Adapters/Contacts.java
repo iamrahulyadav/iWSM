@@ -116,7 +116,7 @@ public class Contacts extends RecyclerView.Adapter<Contacts.MyViewHolder>  {
             if (!mStatus.equals("0")){
 
                 holder.tv_assign.setText("Assinged");
-                holder.tv_assign.setTextColor(mContext.getResources().getColor(R.color.blue));
+                holder.tv_assign.setTextColor(mContext.getResources().getColor(R.color.colorPink));
 
             }
             holder.tv_status.setText(dataArray.get(position).get("staus"));

@@ -80,6 +80,7 @@
             android:id="@+id/iv_bottom_pointing"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:padding="5dp"
             android:background="@drawable/bottom_pointing"
             android:layout_centerInParent="true">
 

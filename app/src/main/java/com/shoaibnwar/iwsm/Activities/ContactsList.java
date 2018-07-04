@@ -34,6 +34,7 @@ public class ContactsList extends AppCompatActivity {
     ArrayList<HashMap<String, String>> contactsList;
     Contacts contactsAdapter;
     ProgressBar progress_bar;
+    ImageView iv_back_arrow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +42,14 @@ public class ContactsList extends AppCompatActivity {
         setContentView(R.layout.activity_contacts_list);
 
         init();
+        onBackArrowClick();
        // addingHardCodeData();
 
     }
 
     private void init() {
 
+        iv_back_arrow = (ImageView) findViewById(R.id.iv_back_arrow);
         rc_list = findViewById(R.id.rc_list);
         rc_list.bringToFront();
         linearLayoutManager = new LinearLayoutManager(ContactsList.this, LinearLayoutManager.VERTICAL, false);
@@ -322,5 +325,15 @@ public class ContactsList extends AppCompatActivity {
 
         }
     }
+    private void onBackArrowClick()
+    {
 
+        iv_back_arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+            }
+        });
+    }
 }

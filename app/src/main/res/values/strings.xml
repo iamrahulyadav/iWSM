@@ -4,104 +4,104 @@
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyD5iNsF7LPnytD6fh4wVe7e3ow0udj27Ms</string>
 
     <string-array name="items">
-        <item>Pepsi,20</item>
-        <item>Coke,20</item>
-        <item>Marida,20</item>
-        <item>Fenta,20</item>
-        <item>Sting,25</item>
-        <item>7up,20</item>
-        <item>Bonus,10</item>
-        <item>Surf xcel,20</item>
-        <item>Lux,30</item>
-        <item>Tibat,25</item>
-        <item>Dalda,440</item>
-        <item>Shan,640</item>
-        <item>Nisan,345</item>
-        <item>Blue band,720</item>
-        <item>Knorr,620</item>
-        <item>Closeup,230</item>
-        <item>Dove,240</item>
-        <item>Lifebouy,820</item>
-        <item>Lipton,720</item>
-        <item>Magnum,620</item>
-        <item>Pepsodent,520</item>
-        <item>Ponds,520</item>
-        <item>Sunsilk,420</item>
-        <item>Domex,220</item>
-        <item>Fari &amp; lovely,520</item>
-        <item>Fruttare,240</item>
-        <item>Rin,2210</item>
-        <item>Kitchen,520</item>
-        <item>Home door,220</item>
-        <item>Bedding,520</item>
-        <item>Furniture,420</item>
-        <item>Storage,220</item>
-        <item>Smartphone,220</item>
-        <item>Bluetooth,720</item>
-        <item>Accessories,230</item>
-        <item>Tablets,820</item>
-        <item>Earphones,620</item>
-        <item>Selfie sticks,820</item>
-        <item>T-Shirt,260</item>
-        <item>Watches,520</item>
-        <item>Shoes,820</item>
-        <item>Pents,240</item>
-        <item>Trousers,920</item>
-        <item>Shorts,820</item>
-        <item>Traditional war,320</item>
-        <item>Innerwear,620</item>
-        <item>Unstitched,320</item>
-        <item>Kurtas,620</item>
-        <item>Twellery,320</item>
-        <item>Nightwear,420</item>
-        <item>Western,620</item>
-        <item>Bras,420</item>
-        <item>Bags,420</item>
-        <item>Makeup,250</item>
-        <item>Hair care,320</item>
-        <item>Fragrances,620</item>
-        <item>Skin care,720</item>
-        <item>Bath &amp; body,240</item>
-        <item>Personal care,250</item>
-        <item>Health care,205</item>
-        <item>Men grooming,240</item>
-        <item>Large appliances,260</item>
-        <item>Small appliences,280</item>
-        <item>Cooling &amp; heating,270</item>
-        <item>Waster drayers,270</item>
-        <item>Generator,260</item>
-        <item>Refrigerator,2650</item>
-        <item>Freezer,280</item>
-        <item>Mixing machine,240</item>
-        <item>Small cooking appliences,250</item>
-        <item>Water dispenser,2550</item>
-        <item>Ironing,203</item>
-        <item>Laundery,205</item>
-        <item>Computing,240</item>
-        <item>Gaming,250</item>
-        <item>Laptops,10000</item>
-        <item>Printers,2050</item>
-        <item>Hard drives,550</item>
-        <item>Rams,20</item>
-        <item>Consoles,20</item>
-        <item>Video games,10</item>
-        <item>Gaming accesories,20</item>
-        <item>Tv and videos,40</item>
-        <item>Audio,60</item>
-        <item>Camera,1000</item>
-        <item>Televesion,2000</item>
-        <item>Remote,40</item>
-        <item>Headphones,50</item>
+        <item>Pepsi,20,AB2233</item>
+        <item>Coke,20,AE2S3</item>
+        <item>Marida,20,EF3J4</item>
+        <item>Fenta,20,87SJD</item>
+        <item>Sting,25,ALD44</item>
+        <item>7up,20,ASDF46</item>
+        <item>Bonus,10,1654SD</item>
+        <item>Surf xcel,20,AS6D5</item>
+        <item>Lux,30,AS3234</item>
+        <item>Tibat,25,ASDF45</item>
+        <item>Dalda,440,152SD</item>
+        <item>Shan,640,SDF45</item>
+        <item>Nisan,345,45SDF</item>
+        <item>Blue band,720,SD54S</item>
+        <item>Knorr,620,54GHJH</item>
+        <item>Closeup,230,FG4H5</item>
+        <item>Dove,240,TR454</item>
+        <item>Lifebouy,820,XXD56</item>
+        <item>Lipton,720,ZXC4D</item>
+        <item>Magnum,620,4E45D</item>
+        <item>Pepsodent,520,DE455</item>
+        <item>Ponds,520,QWER45</item>
+        <item>Sunsilk,420,GRH780</item>
+        <item>Domex,220,RF000</item>
+        <item>Fari &amp; lovely,520,1SDE0</item>
+        <item>Fruttare,240,FDG25</item>
+        <item>Rin,2210,00ZZZ</item>
+        <item>Kitchen,520,ASD02</item>
+        <item>Home door,220,12ABC</item>
+        <item>Bedding,520,DSJK4</item>
+        <item>Furniture,420,ASDF3</item>
+        <item>Storage,220,ASD123</item>
+        <item>Smartphone,220,ASD125</item>
+        <item>Bluetooth,720,ASD126</item>
+        <item>Accessories,230,ASD127</item>
+        <item>Tablets,820,ASD128</item>
+        <item>Earphones,620,ASD129</item>
+        <item>Selfie sticks,820,ASD120</item>
+        <item>T-Shirt,260,ASD113</item>
+        <item>Watches,520,ASD133</item>
+        <item>Shoes,820,ASD143</item>
+        <item>Pents,240,ASD153</item>
+        <item>Trousers,920,ASD623</item>
+        <item>Shorts,820,ASD173</item>
+        <item>Traditional war,320,ASD183</item>
+        <item>Innerwear,620,ASD193</item>
+        <item>Unstitched,320,ASD103</item>
+        <item>Kurtas,620,ASD023</item>
+        <item>Twellery,320,ASD223</item>
+        <item>Nightwear,420,ASD323</item>
+        <item>Western,620,ASD423</item>
+        <item>Bras,420,ASD523</item>
+        <item>Bags,420,ASD623</item>
+        <item>Makeup,250,ASD723</item>
+        <item>Hair care,320,ASD823</item>
+        <item>Fragrances,620,ASD923</item>
+        <item>Skin care,720,BSD323</item>
+        <item>Bath &amp; body,240,CSD323</item>
+        <item>Personal care,250,DSD323</item>
+        <item>Health care,205,ESD323</item>
+        <item>Men grooming,240,FSD323</item>
+        <item>Large appliances,260,GSD323</item>
+        <item>Small appliences,280,HSD323</item>
+        <item>Cooling &amp; heating,270,ISD323</item>
+        <item>Waster drayers,270,JSD323</item>
+        <item>Generator,260,KSD323</item>
+        <item>Refrigerator,2650,LSD323</item>
+        <item>Freezer,280,MSD323</item>
+        <item>Mixing machine,240,NSD323</item>
+        <item>Small cooking appliences,250,OSD323</item>
+        <item>Water dispenser,2550,PSD323</item>
+        <item>Ironing,203,QSD323</item>
+        <item>Laundery,205,RSD323</item>
+        <item>Computing,240,SSD323</item>
+        <item>Gaming,250,TSD323</item>
+        <item>Laptops,10000,USD323</item>
+        <item>Printers,2050,VSD323</item>
+        <item>Hard drives,550,WSD323</item>
+        <item>Rams,20,XSD323</item>
+        <item>Consoles,20,YSD323</item>
+        <item>Video games,10,ZSD323</item>
+        <item>Gaming accesories,20,AAD323</item>
+        <item>Tv and videos,40,ABD323</item>
+        <item>Audio,60,ACD323</item>
+        <item>Camera,1000,ADD323</item>
+        <item>Televesion,2000,AED323</item>
+        <item>Remote,40,AFD323</item>
+        <item>Headphones,50,AGD323</item>
 
     </string-array>
 
     <string-array name="sale_person">
         <item>Select Sales Man</item>
         <item>Nadeem Ali</item>
-    <item>Malik Ahmad</item>
-    <item>Rana Naveed</item>
-    <item>Anas Saeed</item>
-    <item>Umar Khan</item>
+        <item>Malik Ahmad</item>
+        <item>Rana Naveed</item>
+        <item>Anas Saeed</item>
+        <item>Umar Khan</item>
     </string-array>
 
     <string name="user_profile_photo">http://baobaoloveyou.com/flowingdrawer_icon.png</string>

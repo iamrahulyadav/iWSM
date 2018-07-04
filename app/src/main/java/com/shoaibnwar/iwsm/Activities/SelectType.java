@@ -27,8 +27,7 @@ public class SelectType extends AppCompatActivity {
         setContentView(R.layout.activity_selct_type);
 
         init();
-        viewRoutsClickHandler();
-        assignenmentHistoryClickHandler();
+
 
         if (!isContactsPermissionGranted()) {
             showRequestPermissionsInfoAlertDialog();
@@ -51,6 +50,15 @@ public class SelectType extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        rl_assignment_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(SelectType.this, AssignmentsHistory.class);
+                startActivity(i);
+            }
+        });
     }
 
     private void init(){
@@ -65,27 +73,8 @@ public class SelectType extends AppCompatActivity {
 
 
 
-    private void viewRoutsClickHandler(){
-
-        rl_view_customers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
 
-            }
-        });
-    }
-
-    private void assignenmentHistoryClickHandler(){
-
-        rl_view_customers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-            }
-        });
-    }
 
     public boolean isContactsPermissionGranted() {
         return ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED;

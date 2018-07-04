@@ -85,8 +85,19 @@
             android:name=".Activities.SelectType"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".Activities.ContactsList" />
-        <activity android:name=".Activities.MapsAssignemntSearch"></activity>
+        <activity
+            android:name=".Activities.ContactsList"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".Activities.MapsAssignemntSearch" />
+        <activity
+            android:name=".Activities.AssignmentsHistory"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+        <activity android:name=".Activities.OrderItemsDetail"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
     </application>
 
 </manifest>

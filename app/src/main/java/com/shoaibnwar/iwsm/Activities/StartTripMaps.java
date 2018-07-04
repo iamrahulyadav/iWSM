@@ -122,6 +122,11 @@ public class StartTripMaps extends FragmentActivity implements OnMapReadyCallbac
     private TextView tv_address_line_1, tv_address_line_2;
     private TextView tv_delivery_Date, tv_delivery_time;
 
+    String bookingDate = "";
+    String bookingTime = "";
+    String assignerID = "";
+    String salemanID = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,8 +188,10 @@ public class StartTripMaps extends FragmentActivity implements OnMapReadyCallbac
 
         Intent intent = getIntent();
         String address = intent.getStringExtra("address");
-        String bookingDate = intent.getStringExtra("bookingDate");
-        String bookingTime = intent.getStringExtra("bookingTime");
+        bookingDate = intent.getStringExtra("bookingDate");
+        bookingTime = intent.getStringExtra("bookingTime");
+        assignerID = intent.getStringExtra("assignerId");
+        salemanID = intent.getStringExtra("salemanid");
 
         tv_address_line_1.setText(address);
         if (!address.contains("Pakistan")) {
@@ -646,6 +653,10 @@ public class StartTripMaps extends FragmentActivity implements OnMapReadyCallbac
             public void onClick(View v) {
 
                 Intent i = new Intent(StartTripMaps.this, OrderTaking.class);
+                i.putExtra("bookingDate", bookingDate);
+                i.putExtra("bookingTime", bookingTime);
+                i.putExtra("assignerID", assignerID);
+                i.putExtra("salemanID", salemanID);
                 startActivity(i);
             }
         });

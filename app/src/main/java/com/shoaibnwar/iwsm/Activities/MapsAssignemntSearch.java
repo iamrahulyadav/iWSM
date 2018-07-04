@@ -2,6 +2,7 @@ package com.shoaibnwar.iwsm.Activities;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -122,6 +123,7 @@ public class MapsAssignemntSearch extends FragmentActivity implements OnMapReady
     Animation rotation;
     Marker marker;
     JSONArray jsonArray;
+    String ADRESS = "-1";
     
     
     private static final int GOOGLE_API_CLIENT_ID = 0;
@@ -200,6 +202,8 @@ public class MapsAssignemntSearch extends FragmentActivity implements OnMapReady
         iv_bottom_pointing.bringToFront();
 
         ll_confirm = (RelativeLayout) findViewById(R.id.ll_confirm);
+
+        confirmClickHandler();
 
     } // onCreate finishes
 
@@ -280,6 +284,7 @@ public class MapsAssignemntSearch extends FragmentActivity implements OnMapReady
             }
 
             String address = addresses.get(0).getAddressLine(0);
+            ADRESS = address;
             Log.e("TAG", "the address of latlng is: " + address);
             // Zoom in the Google Map
             mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
@@ -434,6 +439,9 @@ public class MapsAssignemntSearch extends FragmentActivity implements OnMapReady
                     }
 //                Toast.makeText(MapsActivity.this, ""+googleMap.getCameraPosition().target, Toast.LENGTH_SHORT).show();
 
+                    LatLng latlng = mMap.getProjection().getVisibleRegion().latLngBounds.getCenter();
+                    Log.e("TAg", "the camera change postion lat lng " + latlng);
+
 
                     Geocoder geocoder;
                     List<Address> addresses = null;
@@ -441,7 +449,9 @@ public class MapsAssignemntSearch extends FragmentActivity implements OnMapReady
                     try {
                         latitude = googleMap.getCameraPosition().target.latitude;
                         longitude = googleMap.getCameraPosition().target.longitude;
-                        addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+                        addresses = geocoder.getFromLocation(latlng.latitude, latlng.longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+                        ADRESS = addresses.get(0).getAddressLine(0);
+                        Log.e("TAg", "the camera change postion lat lng " + ADRESS);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -473,8 +483,7 @@ public class MapsAssignemntSearch extends FragmentActivity implements OnMapReady
 //                BaseService.handleProgressBar(true);*/
                 }
 
-                LatLng latlng = mMap.getProjection().getVisibleRegion().latLngBounds.getCenter();
-                Log.e("TAg", "the camera change postion lat lng " + latlng);
+
 
             }
 
@@ -551,5 +560,24 @@ public class MapsAssignemntSearch extends FragmentActivity implements OnMapReady
         }
     }
 
+
+    private void confirmClickHandler()
+    {
+
+        ll_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!ADRESS.equals("-1")){
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("result",ADRESS);
+                setResult(Activity.RESULT_OK,returnIntent);
+                finish();
+            }else {
+                    Toast.makeText(gpsTracker, "Please Set Location First", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 
 }

@@ -30,11 +30,12 @@
                         android:layout_height="100dp"
                         android:layout_marginLeft="10dp">
 
-                        <com.shoaibnwar.iwsm.Utils.CircleImageView
+                        <ImageView
                             android:id="@+id/iv_person2"
                             android:layout_alignParentRight="true"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:tint="@color/white"
                             android:src="@drawable/person_icon"/>
 
                     </RelativeLayout>
