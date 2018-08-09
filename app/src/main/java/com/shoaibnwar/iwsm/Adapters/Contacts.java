@@ -1,31 +1,21 @@
 package com.shoaibnwar.iwsm.Adapters;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.util.LogPrinter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.shoaibnwar.iwsm.Activities.OrderTaking;
-import com.shoaibnwar.iwsm.Activities.SingleItemDetailActivityForCabs;
+import com.shoaibnwar.iwsm.Activities.SingleItemDetailActivity;
 import com.shoaibnwar.iwsm.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 /**
  * Created by gold on 6/28/2018.
@@ -117,7 +107,6 @@ public class Contacts extends RecyclerView.Adapter<Contacts.MyViewHolder>  {
 
                 holder.tv_assign.setText("Assinged");
                 holder.tv_assign.setTextColor(mContext.getResources().getColor(R.color.colorPink));
-
             }
             holder.tv_status.setText(dataArray.get(position).get("staus"));
             String imageUri = dataArray.get(position).get("imageuri");
@@ -162,7 +151,7 @@ public class Contacts extends RecyclerView.Adapter<Contacts.MyViewHolder>  {
                 Log.e("TAg", "the select contact name: " + contactNumber);
                 Log.e("TAg", "the select contact name: " + imageUri);
 
-                Intent i = new Intent(mContext, SingleItemDetailActivityForCabs.class);
+                Intent i = new Intent(mContext, SingleItemDetailActivity.class);
                 i.putExtra("imageUrl", imageUri);
                 i.putExtra("contactName", contactName);
                 i.putExtra("contactNumber", contactNumber);

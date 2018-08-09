@@ -63,10 +63,6 @@ public class AssignmentesDB extends SQLiteOpenHelper {
     //inserting post in databse
     public long insertDatatoDb(AssignmentDbHelper helper) {
         long result;
-
-
-
-
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         //values.put(Col_1, post.getId());

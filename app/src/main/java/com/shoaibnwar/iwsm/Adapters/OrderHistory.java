@@ -12,7 +12,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.shoaibnwar.iwsm.Activities.OrderItemsDetail;
-import com.shoaibnwar.iwsm.Activities.SingleItemDetailActivityForCabs;
 import com.shoaibnwar.iwsm.R;
 
 import java.util.ArrayList;

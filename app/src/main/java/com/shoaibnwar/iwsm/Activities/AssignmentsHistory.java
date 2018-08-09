@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.shoaibnwar.iwsm.Adapters.EnvoiceAdapter;
 import com.shoaibnwar.iwsm.Adapters.OrderHistory;
@@ -23,7 +24,7 @@ public class AssignmentsHistory extends AppCompatActivity {
     RecyclerView rc_items;
     LinearLayoutManager linearLayoutManager;
     OrderHistory orderHistory;
-    ImageView iv_back_arrow;
+    RelativeLayout iv_back_arrow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class AssignmentsHistory extends AppCompatActivity {
 
     private void init(){
         dataList = new ArrayList<>();
-        iv_back_arrow = (ImageView) findViewById(R.id.iv_back_arrow);
+        iv_back_arrow = (RelativeLayout) findViewById(R.id.iv_back_arrow);
         rc_items = (RecyclerView) findViewById(R.id.rc_items);
         linearLayoutManager = new LinearLayoutManager(AssignmentsHistory.this, LinearLayoutManager.VERTICAL, false);
         rc_items.setLayoutManager(linearLayoutManager);

@@ -34,7 +34,7 @@ public class VerticalListActivity extends AppCompatActivity {
     RecyclerView rc_list;
     CustomeAdapterVerticallScrollItems customeAdapterForImage;
     LinearLayoutManager linearLayoutManager;
-    ImageView iv_back_arrow;
+
     ArrayList<HashMap<String, String>> dataList;
 
     private HorizontalCalendar horizontalCalendar;
@@ -48,6 +48,7 @@ public class VerticalListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
 
         init();
+
         overridePendingTransition( R.anim.slide_in_up, R.anim.slide_out_up );
 
 
@@ -134,73 +135,11 @@ public class VerticalListActivity extends AppCompatActivity {
 
         rc_list = findViewById(R.id.rc_list);
         rc_list.bringToFront();
-        iv_back_arrow = (ImageView) findViewById(R.id.iv_back_arrow);
         linearLayoutManager = new LinearLayoutManager(VerticalListActivity.this, LinearLayoutManager.VERTICAL, false);
         rc_list.setLayoutManager(linearLayoutManager);
-        //dataList = ( ArrayList<HashMap<String, String>>) getIntent().getSerializableExtra("mylist");
-       /* AssignmentesDB db = new AssignmentesDB(VerticalListActivity.this);
-        ArrayList<AssignmentDbHelper> assignmentList  = db.getAllAsignments();
-        dataList = new ArrayList<>();
-
-        for (AssignmentDbHelper assignmentDbHelper : assignmentList){
-
-            HashMap<String, String> itemList = new HashMap<>();
-
-            String tableId = assignmentDbHelper.getId();
-            String assignerContactId = assignmentDbHelper.getAssignerID();
-            String assignerName = assignmentDbHelper.getAssignerName();
-            String assignerContact  = assignmentDbHelper.getAssignerContact();
-            String assignerCompany = assignmentDbHelper.getAssignerCompany();
-            String assignerAddress = assignmentDbHelper.getAssignerAddress();
-            String startdate = assignmentDbHelper.getStartDate();
-            String startTime = assignmentDbHelper.getStartTime();
-            String saleManName = assignmentDbHelper.getSalemanName();
-            String saleManContact = assignmentDbHelper.getSalemanContact();
-            String saleManAddress = assignmentDbHelper.getSalemanAddress();
-            String saleManId = assignmentDbHelper.getSalemanId();
-
-            itemList.put("tableId", tableId);
-            itemList.put("assignerContactId", assignerContactId);
-            itemList.put("assignerName", assignerName);
-            itemList.put("assignerContact", assignerContact);
-            itemList.put("assignerCompany", assignerCompany);
-            itemList.put("assignerAddress", assignerAddress);
-            itemList.put("startdate", startdate);
-            Log.e("TAg", "the selected Date is from db " + startdate);
-            itemList.put("startTime", startTime);
-            itemList.put("saleManName", saleManName);
-            itemList.put("saleManContact", saleManContact);
-            itemList.put("saleManAddress", saleManAddress);
-            itemList.put("saleManId", saleManId);
-            dataList.add(itemList);
-
-        }
-
-        Log.e("TAG", "the array list size is: " + dataList.size());
-        //edit by shoaib anwar
-        customeAdapterForImage = new CustomeAdapterVerticallScrollItems(getApplicationContext(), dataList);
-        rc_list.setAdapter(customeAdapterForImage);*/
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
-        }
-        return true;
-    }
-
-    private void backPressHandler(){
-        iv_back_arrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-    }
 
     public String parseDateToddMMyyyy(String time) {
         String inputPattern = "MMM dd, yyyy";

@@ -11,9 +11,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.shoaibnwar.iwsm.Activities.SingleItemDetailActivityForCabs;
+import com.shoaibnwar.iwsm.Activities.SingleItemDetailActivity;
 import com.shoaibnwar.iwsm.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -117,7 +116,7 @@ public class CustomeAdapterVerticallScrollItems extends RecyclerView.Adapter<Cus
 
 
 
-                Intent detailActivity = new Intent(mContext, SingleItemDetailActivityForCabs.class);
+                Intent detailActivity = new Intent(mContext, SingleItemDetailActivity.class);
 
                 detailActivity.putExtra("imageUrl", "-1");
                 detailActivity.putExtra("contactName", dataArray.get(position).get("assignerName"));

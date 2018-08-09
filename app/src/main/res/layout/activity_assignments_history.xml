@@ -18,15 +18,19 @@
             android:layout_alignParentTop="true"
             android:background="@color/colorPink">
 
+           <RelativeLayout
+               android:id="@+id/iv_back_arrow"
+               android:layout_width="30dp"
+               android:layout_height="match_parent"
+               android:layout_marginLeft="10dp">
             <ImageView
-                android:id="@+id/iv_back_arrow"
                 android:layout_width="25dp"
                 android:layout_height="15dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="15dp"
                 android:scaleType="fitXY"
                 android:tint="@color/white"
                 android:src="@drawable/arrow_back"/>
+           </RelativeLayout>
             <TextView
                 android:layout_toRightOf="@id/iv_back_arrow"
                 android:layout_marginLeft="15dp"

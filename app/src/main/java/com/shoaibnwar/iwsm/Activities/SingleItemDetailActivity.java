@@ -1,7 +1,6 @@
 package com.shoaibnwar.iwsm.Activities;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -39,21 +38,18 @@ import com.shoaibnwar.iwsm.Listeners.AsyncTaskCompleteListener;
 import com.shoaibnwar.iwsm.R;
 import com.shoaibnwar.iwsm.Utils.Logger;
 import com.shoaibnwar.iwsm.Utils.SharedPrefs;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class SingleItemDetailActivityForCabs extends AppCompatActivity implements AsyncTaskCompleteListener {
+public class SingleItemDetailActivity extends AppCompatActivity implements AsyncTaskCompleteListener {
 
     ImageView iv_back_arrow;
     ImageView iv_person2;
@@ -98,7 +94,7 @@ public class SingleItemDetailActivityForCabs extends AppCompatActivity implement
     LinearLayout ll_when_assined, ll_when_not_assigne;
     TextView tv_saleman_m_name, tv_saleman_m_phome, tv_saleman_m_id;
     TextView tv_saleman_m_satrt_date, tv_saleman_m_satrt_time;
-    Button bt_confirm_order, bt_start_assignment;
+    Button bt_confirm_order, bt_start_assignment, bt_sell_now;
     RelativeLayout rl_spinner_layout;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -118,6 +114,7 @@ public class SingleItemDetailActivityForCabs extends AppCompatActivity implement
         spinnerITemClickHandler();
         openingSpiinerOnViewClick();
         startAssignmentClickHandler();
+        saleNow();
 
 
        /* if (contactLat!=null){
@@ -133,7 +130,7 @@ public class SingleItemDetailActivityForCabs extends AppCompatActivity implement
         map.put("url", Urls.GET_ASSET_DETAIL);
         map.put("Aid",  Aid);
         map.put("VType",  VType);
-        new HttpRequester(SingleItemDetailActivityForCabs.this, map, 6, SingleItemDetailActivityForCabs.this);
+        new HttpRequester(SingleItemDetailActivity.this, map, 6, SingleItemDetailActivity.this);
 */
 
       startAssigmentButtonClick();
@@ -157,6 +154,7 @@ public class SingleItemDetailActivityForCabs extends AppCompatActivity implement
 
         bt_start_assignment = (Button) findViewById(R.id.bt_start_assignment);
         bt_confirm_order = (Button) findViewById(R.id.bt_confirm_order);
+        bt_sell_now = (Button) findViewById(R.id.bt_sell_now);
 
         tv_assign_now = (TextView) findViewById(R.id.tv_assign_now);
         sp_for_sale_persons = (Spinner) findViewById(R.id.sp_for_sale_persons);
@@ -171,7 +169,7 @@ public class SingleItemDetailActivityForCabs extends AppCompatActivity implement
         rl_spinner_layout= (RelativeLayout) findViewById(R.id.rl_spinner_layout);
 
 
-        rotation = AnimationUtils.loadAnimation(SingleItemDetailActivityForCabs.this, R.anim.rotate);
+        rotation = AnimationUtils.loadAnimation(SingleItemDetailActivity.this, R.anim.rotate);
         rotation.setFillAfter(true);
 
         ll_address = (LinearLayout) findViewById(R.id.ll_address);
@@ -179,13 +177,13 @@ public class SingleItemDetailActivityForCabs extends AppCompatActivity implement
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(SingleItemDetailActivityForCabs.this, MapsAssignemntSearch.class);
+                Intent i = new Intent(SingleItemDetailActivity.this, MapsAssignemntSearch.class);
                 startActivityForResult(i, 201);
             }
         });
 
 
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(SingleItemDetailActivityForCabs.this,
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(SingleItemDetailActivity.this,
                 R.array.sale_person, R.layout.spinner_item_sale_man);
 
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
@@ -220,14 +218,14 @@ public class SingleItemDetailActivityForCabs extends AppCompatActivity implement
 
        /* if (!imageUrl.equals("-1")) {
             Log.e("TAg", "the image url is: " + imageUrl);
-            Picasso.with(SingleItemDetailActivityForCabs.this)
+            Picasso.with(SingleItemDetailActivity.this)
                     .load(imageUrl)
                     .placeholder(R.drawable.amu_bubble_shadow)
                     //.fit()
                     .into(iv_person2);
         }
         else {
-            Picasso.with(SingleItemDetailActivityForCabs.this)
+            Picasso.with(SingleItemDetailActivity.this)
                     .load(R.drawable.person_icon)
                     .placeholder(R.drawable.amu_bubble_shadow)
                     //.fit()
@@ -259,7 +257,7 @@ public class SingleItemDetailActivityForCabs extends AppCompatActivity implement
             ll_when_assined.setVisibility(View.VISIBLE);
             ll_when_not_assigne.setVisibility(View.GONE);
 
-            AssignmentesDB db = new AssignmentesDB(SingleItemDetailActivityForCabs.this);
+            AssignmentesDB db = new AssignmentesDB(SingleItemDetailActivity.this);
             ArrayList<AssignmentDbHelper> helper = db.getSingleRecord(contactStatus);
 
             Log.e("TAG", "the array list is: " + db.getCount());
@@ -280,6 +278,7 @@ public class SingleItemDetailActivityForCabs extends AppCompatActivity implement
 
             bt_confirm_order.setVisibility(View.GONE);
             bt_start_assignment.setVisibility(View.VISIBLE);
+            bt_sell_now.setVisibility(View.VISIBLE);
 
         }else {
             ll_when_assined.setVisibility(View.GONE);
@@ -287,9 +286,9 @@ public class SingleItemDetailActivityForCabs extends AppCompatActivity implement
 
             bt_confirm_order.setVisibility(View.VISIBLE);
             bt_start_assignment.setVisibility(View.GONE);
+            bt_sell_now.setVisibility(View.GONE);
 
             Date currentDate = Calendar.getInstance().getTime();
-
             String myFormat = "dd-MMM-yyyy"; //In which you need put here
             SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.ENGLISH);
             tv_date.setText(sdf.format(currentDate));
@@ -353,28 +352,26 @@ public class SingleItemDetailActivityForCabs extends AppCompatActivity implement
             @Override
             public void onClick(View view) {
 
-
-
                 String startDate = tv_date.getText().toString();
                 String startTime = tv_time.getText().toString();
                 long itemId = sp_for_sale_persons.getSelectedItemId();
 
                 if (itemId==0){
-                    Toast.makeText(SingleItemDetailActivityForCabs.this, "Please Select Sale Person", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SingleItemDetailActivity.this, "Please Select Sale Person", Toast.LENGTH_SHORT).show();
                     sp_for_sale_persons.setAnimation(animShake);
                 } else if (startDate.equals("Select Date")) {
-                    Toast.makeText(SingleItemDetailActivityForCabs.this, "Please Set Start Date", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SingleItemDetailActivity.this, "Please Set Start Date", Toast.LENGTH_SHORT).show();
                     ll_start_date.setAnimation(animShake);
                 }
                 else if (startTime.equals("Select Time")){
-                    Toast.makeText(SingleItemDetailActivityForCabs.this, "Please set Start time", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SingleItemDetailActivity.this, "Please set Start time", Toast.LENGTH_SHORT).show();
                     ll_start_time.setAnimation(animShake);
                 }
                 else {
 
                     Log.e("TAg", "the name of sale man is: " + saleManName);
 
-                    AssignmentesDB db = new AssignmentesDB(SingleItemDetailActivityForCabs.this);
+                    AssignmentesDB db = new AssignmentesDB(SingleItemDetailActivity.this);
                     AssignmentDbHelper dbHelper = new AssignmentDbHelper();
                     dbHelper.setAssignerID(contactId);
                     dbHelper.setAssignerName(contacttName);
@@ -392,18 +389,18 @@ public class SingleItemDetailActivityForCabs extends AppCompatActivity implement
                     long isInserted = db.insertDatatoDb(dbHelper);
                     if (isInserted!=-1) {
                         Log.e("TAG", "DATA inserted into Assignment Table succesfully");
-                        //Toast.makeText(SingleItemDetailActivityForCabs.this, "Assigned Sucessfully", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(SingleItemDetailActivity.this, "Assigned Sucessfully", Toast.LENGTH_SHORT).show();
                     }
 
-                    ContactDatabase dbContact = new ContactDatabase(SingleItemDetailActivityForCabs.this);
+                    ContactDatabase dbContact = new ContactDatabase(SingleItemDetailActivity.this);
                     boolean isUpdated = dbContact.updateTable(Integer.valueOf(contactId), String.valueOf((int)itemId));
                     Log.e("TAG", "the value is update or not " + isUpdated);
                     if (isUpdated){
-                        Toast.makeText(SingleItemDetailActivityForCabs.this, "Assignment Assigned Successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SingleItemDetailActivity.this, "Assignment Assigned Successfully", Toast.LENGTH_SHORT).show();
                         tv_assign_now.setText("Assigned");
 
-                        //Intent rideNowActivity = new Intent(SingleItemDetailActivityForCabs.this, StartTripMaps.class);
-                        Intent rideNowActivity = new Intent(SingleItemDetailActivityForCabs.this, SelectType.class);
+                        //Intent rideNowActivity = new Intent(SingleItemDetailActivity.this, StartTripMaps.class);
+                        Intent rideNowActivity = new Intent(SingleItemDetailActivity.this, SelectType.class);
                         rideNowActivity.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NO_HISTORY);
                         startActivity(rideNowActivity);
 
@@ -423,7 +420,7 @@ public class SingleItemDetailActivityForCabs extends AppCompatActivity implement
                 String textTag = tv_assign_now.getText().toString();
                 if (textTag.equals("Assigned")){
 
-                    final Dialog dialog =  new Dialog(SingleItemDetailActivityForCabs.this);
+                    final Dialog dialog =  new Dialog(SingleItemDetailActivity.this);
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dialog.setContentView(R.layout.custome_dialog_assigned_detail);
                     TextView tv_confirm = (TextView) dialog.findViewById(R.id.tv_confirm);
@@ -475,7 +472,7 @@ public class SingleItemDetailActivityForCabs extends AppCompatActivity implement
                 }
                 else if (textTag.equals("Assign Now")){
 
-                final Dialog dialog =  new Dialog(SingleItemDetailActivityForCabs.this);
+                final Dialog dialog =  new Dialog(SingleItemDetailActivity.this);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.custome_dialog_assign);
                 TextView tv_confirm = (TextView) dialog.findViewById(R.id.tv_confirm);
@@ -513,7 +510,7 @@ public class SingleItemDetailActivityForCabs extends AppCompatActivity implement
                     public void onClick(View v) {
 
                         if (checkedIdis==0){
-                            Toast.makeText(SingleItemDetailActivityForCabs.this, "Choose a person first", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SingleItemDetailActivity.this, "Choose a person first", Toast.LENGTH_SHORT).show();
                         }
                         else {
 
@@ -570,11 +567,11 @@ public class SingleItemDetailActivityForCabs extends AppCompatActivity implement
 
                             }
 
-                            ContactDatabase db = new ContactDatabase(SingleItemDetailActivityForCabs.this);
+                            ContactDatabase db = new ContactDatabase(SingleItemDetailActivity.this);
                              boolean isUpdated = db.updateTable(Integer.valueOf(contactId), String.valueOf(checkedIdis));
                             Log.e("TAG", "the value is update or not " + isUpdated);
                             if (isUpdated){
-                                Toast.makeText(SingleItemDetailActivityForCabs.this, "Assignment Assigned Successfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SingleItemDetailActivity.this, "Assignment Assigned Successfully", Toast.LENGTH_SHORT).show();
                                 tv_assign_now.setText("Assigned");
                             }
 
@@ -623,7 +620,7 @@ public class SingleItemDetailActivityForCabs extends AppCompatActivity implement
         ll_start_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(SingleItemDetailActivityForCabs.this, date, myCalendar
+                DatePickerDialog datePickerDialog = new DatePickerDialog(SingleItemDetailActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH));
 
@@ -662,7 +659,7 @@ public class SingleItemDetailActivityForCabs extends AppCompatActivity implement
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
                 int minute = mcurrentTime.get(Calendar.MINUTE);
                 TimePickerDialog mTimePicker;
-                mTimePicker = new TimePickerDialog(SingleItemDetailActivityForCabs.this, new TimePickerDialog.OnTimeSetListener() {
+                mTimePicker = new TimePickerDialog(SingleItemDetailActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         tv_time.setText( selectedHour + ":" + selectedMinute);
@@ -859,13 +856,30 @@ public class SingleItemDetailActivityForCabs extends AppCompatActivity implement
                 String bookingDate = tv_saleman_m_satrt_date.getText().toString();
                 String bookingTime = tv_saleman_m_satrt_time.getText().toString();
 
-                Intent startAssignemnts = new Intent(SingleItemDetailActivityForCabs.this, StartTripMaps.class);
+                Intent startAssignemnts = new Intent(SingleItemDetailActivity.this, StartTripMaps.class);
                 startAssignemnts.putExtra("address", address);
                 startAssignemnts.putExtra("bookingDate", bookingDate);
                 startAssignemnts.putExtra("bookingTime", bookingTime);
                 startAssignemnts.putExtra("assignerId", contactNumber);
                 startAssignemnts.putExtra("salemanid", saleManContact);
                 startActivity(startAssignemnts);
+            }
+        });
+    }
+    private void saleNow()
+    {
+        bt_sell_now.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String bookingDate = tv_saleman_m_satrt_date.getText().toString();
+                String bookingTime = tv_saleman_m_satrt_time.getText().toString();
+                Intent i = new Intent(SingleItemDetailActivity.this, OrderTaking.class);
+                i.putExtra("bookingDate", bookingDate);
+                i.putExtra("bookingTime", bookingTime);
+                i.putExtra("assignerID", contactNumber);
+                i.putExtra("salemanID", saleManContact);
+                startActivity(i);
             }
         });
     }

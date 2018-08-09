@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.shoaibnwar.iwsm.Activities.SingleItemDetailActivityForCabs;
+import com.shoaibnwar.iwsm.Activities.SingleItemDetailActivity;
 import com.shoaibnwar.iwsm.R;
 import com.squareup.picasso.Picasso;
 
@@ -97,7 +97,7 @@ public class CustomeAdapterForImage extends RecyclerView.Adapter<CustomeAdapterF
                     String assetId = dataArray.get(position).get("Vid");
                     String assetType = dataArray.get(position).get("VType");
 
-                    Intent detailActivity = new Intent(mContext, SingleItemDetailActivityForCabs.class);
+                    Intent detailActivity = new Intent(mContext, SingleItemDetailActivity.class);
                     /*detailActivity.putExtra("Vid", assetId);
                     detailActivity.putExtra("VType", assetType);*/
                     detailActivity.putExtra("imageUrl", dataArray.get(position).get("V_ThumbImg"));

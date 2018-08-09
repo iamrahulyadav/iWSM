@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +31,7 @@ public class Envoice extends AppCompatActivity {
     TextView tv_total_price;
     LinearLayoutManager linearLayoutManager;
     EnvoiceAdapter envoiceAdapter;
-    ImageView iv_back_arrow;
+    RelativeLayout iv_back_arrow;
     TextView tv_confirm;
 
     int mPrice = 0;
@@ -57,7 +58,7 @@ public class Envoice extends AppCompatActivity {
         tv_item_count = (TextView) findViewById(R.id.tv_item_count);
         tv_total_price = (TextView) findViewById(R.id.tv_total_price);
         rc_items = (RecyclerView) findViewById(R.id.rc_items);
-        iv_back_arrow = (ImageView) findViewById(R.id.iv_back_arrow);
+        iv_back_arrow = (RelativeLayout) findViewById(R.id.iv_back_arrow);
         tv_confirm = (TextView) findViewById(R.id.tv_confirm);
 
 

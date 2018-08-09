@@ -78,7 +78,7 @@
     <style name="Swipe_Layout_BtnIcon">
         <item name="android:layout_marginLeft">5dp</item>
     </style>
-    >
+
 
     <style name="Swipe_Layout_CheckMark_Visibility">
         <item name="android:visibility">invisible</item>

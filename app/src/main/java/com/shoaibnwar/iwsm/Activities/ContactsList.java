@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.shoaibnwar.iwsm.Adapters.Contacts;
 import com.shoaibnwar.iwsm.Database.ContactDatabase;
@@ -34,7 +35,7 @@ public class ContactsList extends AppCompatActivity {
     ArrayList<HashMap<String, String>> contactsList;
     Contacts contactsAdapter;
     ProgressBar progress_bar;
-    ImageView iv_back_arrow;
+    RelativeLayout iv_back_arrow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class ContactsList extends AppCompatActivity {
 
     private void init() {
 
-        iv_back_arrow = (ImageView) findViewById(R.id.iv_back_arrow);
+        iv_back_arrow = (RelativeLayout) findViewById(R.id.iv_back_arrow);
         rc_list = findViewById(R.id.rc_list);
         rc_list.bringToFront();
         linearLayoutManager = new LinearLayoutManager(ContactsList.this, LinearLayoutManager.VERTICAL, false);

@@ -35,7 +35,7 @@ import java.util.HashMap;
 public class OrderTaking extends AppCompatActivity {
 
     ImageView top_iv_add_more;
-    ImageView top_iv_back_arrow;
+    RelativeLayout iv_back_arrow;
     LinearLayout ll_main_item_views;
     TextView top_tv_confirm;
     TextView top_et_quantitiy;
@@ -78,7 +78,7 @@ public class OrderTaking extends AppCompatActivity {
 
         ll_main_item_views = (LinearLayout) findViewById(R.id.ll_main_item_views);
         top_iv_add_more = (ImageView) findViewById(R.id.iv_add_more);
-        top_iv_back_arrow = (ImageView) findViewById(R.id.iv_back_arrow);
+        iv_back_arrow = (RelativeLayout) findViewById(R.id.iv_back_arrow);
         top_tv_confirm = (TextView) findViewById(R.id.tv_confirm);
         top_iv_item_quantity_less = (ImageView) findViewById(R.id.iv_item_quantity_less);
         top_iv_item_quantity_more = (ImageView) findViewById(R.id.iv_item_quantity_more);
@@ -190,7 +190,7 @@ public class OrderTaking extends AppCompatActivity {
 
     }
     private void onBackArrwoPressListener(){
-        top_iv_back_arrow.setOnClickListener(new View.OnClickListener() {
+        iv_back_arrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

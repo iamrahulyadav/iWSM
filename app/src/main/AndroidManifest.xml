@@ -61,7 +61,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".Activities.SingleItemDetailActivityForCabs"
+            android:name=".Activities.SingleItemDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
@@ -94,10 +94,11 @@
             android:name=".Activities.AssignmentsHistory"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
-        <activity android:name=".Activities.OrderItemsDetail"
+        <activity
+            android:name=".Activities.OrderItemsDetail"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".Activities.LoginActivity"></activity>
     </application>
 
 </manifest>

@@ -59,6 +59,16 @@ public class SelectType extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        rl_view_routes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(SelectType.this, MainMaps.class);
+                startActivity(i);
+            }
+        });
+
     }
 
     private void init(){

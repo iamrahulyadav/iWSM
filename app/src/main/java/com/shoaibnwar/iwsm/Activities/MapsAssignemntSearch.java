@@ -3,11 +3,8 @@ package com.shoaibnwar.iwsm.Activities;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,24 +18,14 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -48,12 +35,9 @@ import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -70,32 +54,22 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.TileOverlayOptions;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.maps.android.heatmaps.HeatmapTileProvider;
 import com.shoaibnwar.iwsm.Adapters.PlaceArrayAdapter;
 import com.shoaibnwar.iwsm.Listeners.AsyncTaskCompleteListener;
 import com.shoaibnwar.iwsm.R;
-import com.shoaibnwar.iwsm.Services.HttpRequester;
 import com.shoaibnwar.iwsm.Services.UserService;
-import com.shoaibnwar.iwsm.Utils.Logger;
-import com.shoaibnwar.iwsm.Utils.Urls;
 import com.shoaibnwar.iwsm.Utils.Utils;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -206,6 +180,8 @@ public class MapsAssignemntSearch extends FragmentActivity implements OnMapReady
         confirmClickHandler();
 
     } // onCreate finishes
+
+
 
     @SuppressLint("NewApi")
     @Override
@@ -394,9 +370,11 @@ public class MapsAssignemntSearch extends FragmentActivity implements OnMapReady
             }
         });
 
+
+
+
         latitude = gpsTracker.getLatitude();
         longitude = gpsTracker.getLongitude();
-
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, ACCESS_FINE_LOCATION);
@@ -405,7 +383,7 @@ public class MapsAssignemntSearch extends FragmentActivity implements OnMapReady
         mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
 
-        final LatLng latlng = new LatLng(gpsTracker.getLatitude(), gpsTracker.getLongitude());
+        //final LatLng latlng = new LatLng(gpsTracker.getLatitude(), gpsTracker.getLongitude());
         //mMap.addMarker(new MarkerOptions().position(latlng).icon(BitmapDescriptorFactory.fromResource(R.drawable.user_pin)));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(gpsTracker.latitude, gpsTracker.longitude), 15));
 
@@ -442,14 +420,21 @@ public class MapsAssignemntSearch extends FragmentActivity implements OnMapReady
                     LatLng latlng = mMap.getProjection().getVisibleRegion().latLngBounds.getCenter();
                     Log.e("TAg", "the camera change postion lat lng " + latlng);
 
+                    CameraPosition cameraPosition = new CameraPosition.Builder()
+                            .target(latlng).zoom(12.f).build();
+
+                    mMap.animateCamera(CameraUpdateFactory
+                            .newCameraPosition(cameraPosition));
 
                     Geocoder geocoder;
                     List<Address> addresses = null;
                     geocoder = new Geocoder(MapsAssignemntSearch.this, Locale.getDefault());
                     try {
-                        latitude = googleMap.getCameraPosition().target.latitude;
-                        longitude = googleMap.getCameraPosition().target.longitude;
-                        addresses = geocoder.getFromLocation(latlng.latitude, latlng.longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+                        latitude = latlng.latitude;
+                        longitude =latlng.longitude;
+                       /* latitude = googleMap.getCameraPosition().target.latitude;
+                        longitude = googleMap.getCameraPosition().target.longitude;*/
+                        addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5]
                         ADRESS = addresses.get(0).getAddressLine(0);
                         Log.e("TAg", "the camera change postion lat lng " + ADRESS);
                     } catch (IOException e) {
@@ -510,7 +495,6 @@ public class MapsAssignemntSearch extends FragmentActivity implements OnMapReady
     @Override
     public void onConnected(@Nullable Bundle bundle) {
         mPlaceArrayAdapter.setGoogleApiClient(mGoogleApiClient);
-        LatLng latlng = mMap.getProjection().getVisibleRegion().latLngBounds.getCenter();
 
     }
 
@@ -574,7 +558,7 @@ public class MapsAssignemntSearch extends FragmentActivity implements OnMapReady
                 setResult(Activity.RESULT_OK,returnIntent);
                 finish();
             }else {
-                    Toast.makeText(gpsTracker, "Please Set Location First", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MapsAssignemntSearch.this, "Please Set Location First", Toast.LENGTH_SHORT).show();
                 }
             }
         });
